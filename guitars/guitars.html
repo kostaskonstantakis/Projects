@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Author" content="Kostas Konstantakis">
+<meta name="keywords" lang="en-us" content="web programming, HTML, CSS, Javascript, website, webpage, guitars, web, web development">
+<link rel="stylesheet" type="text/css" href="css/guitars.css">
+<title>Kostas' Guitars</title>
+<link rel="icon" type="image/x-icon" href="css/media/main.jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	
+	<header>
+		<h1>Welcome to a site about Kostas' guitars! Enjoy!</h1>
+	</header>
+
+	<main id="main-content">
+            <p class="synopsis">Hello, everyone! My name is Kostas Konstantakis, welcome to a demo site about my beloved guitars.
+                I have been playing guitar for over 15 years now, since September 2009.
+                Essentially, more than half my life, given the fact that I'm <span id="age" aria-live="polite"></span> years old, already!
+                What about you? Do
+            </p>
+
+		<div class="orientation-control">
+			<label for="orientation-filter">Guitar orientation:</label>
+			<select id="orientation-filter" aria-describedby="orientation-desc">
+				<option value="vertical" selected>Vertical</option>
+				<option value="horizontal">Horizontal</option>
+			</select>
+			<span id="orientation-desc" class="visually-hidden">Choose how guitar images are displayed: upright or rotated 90 degrees.</span>
+		</div>
+
+		<section class="guitars-section" id="guitars-section" aria-label="Guitar gallery">
+			<div class="guitar-section" tabindex="0" role="group" data-description="Schecter Blackjack ATX C1 My fave guitar! I got this second hand in 2016." aria-label="Schecter Blackjack ATX C1. My fave guitar! I got this second hand in 2016.">
+				<div class="guitar-section__img-wrap" data-description="Schecter Blackjack ATX C1. It's my fave guitar! I got this second hand in 2016."><img src="css/media/schecter-blackjack.jpg" alt="Schecter Blackjack ATX C1 My fave guitar! I got this second hand in 2016."></div>
+			</div>
+			<div class="guitar-section" tabindex="0" role="group" data-description="Solar A2.7 TBR Trans Blood Red Matte. I got this one also second hand in 2019." aria-label="Solar A2.7 TBR Trans Blood Red Matte. I also got this one second hand in 2019.">
+				<div class="guitar-section__img-wrap" data-description="Solar A2.7 TBR Trans Blood Red Matte. I also got this one second hand in 2019."><img src="css/media/solar-a2-7-red-matte.jpg" alt="Solar A2.7 TBR Trans Blood Red Matte. I got this one also second hand in 2019."></div>
+			</div>
+			<div class="guitar-section" tabindex="0" role="group" data-description="Kirk Hammett Washburn Student Series-My first guitar ever, back in 2009!" aria-label="Kirk Hammett Washburn Student Series. My first guitar ever, back in 2009!">
+				<div class="guitar-section__img-wrap" data-description="Kirk Hammett Washburn Student Series-My first guitar ever, back in 2009!"><img src="css/media/kirk-hammett-washburn.jpg" alt="Kirk Hammett Washburn Student Series. My first guitar ever, back in 2009!"></div>
+			</div>
+			<div class="guitar-section" tabindex="0" role="group" data-description="Cort B4 Element Bass.I bought this in 2022 from Kagmakis Guitars in Erxarheia." aria-label="Cort B4 Element Bass. I bought this in 2022 from Kagmakis Guitars in Erxarheia.">
+				<div class="guitar-section__img-wrap" data-description="Cort B4 Element Bass.I bought this in 2022 from Kagmakis Guitars in Erxarheia."><img src="css/media/cort-b4-element.jpg" alt="Cort B4 Element Bass. I bought this in 2022 from Kagmakis Guitars in Erxarheia."></div>
+			</div>
+			<div class="guitar-section" tabindex="0" role="group" data-description="Fender Squier Telemaster. I got this from Stolas Store in Kallithea, in 2022." aria-label="Fender Squier Telemaster. I got this from Stolas Store in Kallithea, in 2022.">
+				<div class="guitar-section__img-wrap" data-description="Fender Squier Telemaster. I got this from Stolas Store in Kallithea, in 2022."><img src="css/media/squier-telemaster.jpg" alt="Fender Squier Telemaster. I got this from Stolas Store in Kallithea, in 2022."></div>
+			</div>
+			<div class="guitar-section" tabindex="0" role="group" data-description="Fender Squier Stagemaster. Another happy purchase from Kagmakis Guitars, also in 2022." aria-label="Fender Squier Stagemaster. Another happy purchase from Kagmakis Guitars, also in 2022.">
+				<div class="guitar-section__img-wrap" data-description="Fender Squier Stagemaster. Another happy purchase from Kagmakis Guitars, also in 2022."><img src="css/media/squier-stagemaster.jpg" alt="Fender Squier Stagemaster. Another happy purchase from Kagmakis Guitars, also in 2022."></div>
+			</div>
+			<div class="guitar-section" tabindex="0" role="group" data-description="Yamaha APX 600 Natural acoustic. I ordered this one with the Misha Mansoor signature guitar from Thomann, in 2021." aria-label="Yamaha APX 600 Natural acoustic. I ordered this one with the Misha Mansoor signature guitar from Thomann, in 2021.">
+				<div class="guitar-section__img-wrap" data-description="Yamaha APX 600 Natural acoustic. I ordered this one with the Misha Mansoor signature guitar from Thomann, in 2021."><img src="css/media/yamaha-acoustic.jpg" alt="Yamaha APX 600 Natural acoustic. I ordered this one with the Misha Mansoor signature guitar from Thomann, in 2021."></div>
+			</div>
+			<div class="guitar-section" tabindex="0" role="group" data-description="Jackson Pro Misha Mansoor Juggernaut HT6QM CB. It's the sole signature guitar I own, since 2021." aria-label="Jackson Pro Misha Mansoor Juggernaut HT6QM CB. It's the sole signature guitar I own, since 2021.">
+				<div class="guitar-section__img-wrap" data-description="Jackson Pro Misha Mansoor Juggernaut HT6QM CB. It's the sole signature guitar I own, since 2021."><img src="css/media/jackson-misha-mansoor-juggernaut.jpg" alt="Jackson Pro Misha Mansoor Juggernaut HT6QM CB. It's the sole signature guitar I own, since 2021."></div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="socials">
+		<div class="name-year">Kostas Konstantakis &#169; <span id="year"></span></div>
+		<nav class="footer-links" aria-label="Social links">
+			<a class="footer-link" id="github" href="https://github.com/kostaskonstantakis/" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><i class="fa" aria-hidden="true">&#xf09b;</i></a>
+			<a class="footer-link" id="linkedin" href="https://www.linkedin.com/in/kostas-k-8841961a2/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><i class="fa" aria-hidden="true">&#xf08c;</i></a>
+			<a class="footer-link" id="e-mail" href="mailto:kostaskonstantakis6@gmail.com" aria-label="Send email"><i class="fa" aria-hidden="true">&#xf0e0;</i></a>
+		</nav>
+	</footer>
+
+    <script src="js/guitars.js"></script>
+
+</body>
+</html>
