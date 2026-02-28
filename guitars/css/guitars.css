@@ -26,6 +26,7 @@
 	z-index: 100;
 	transition: top 0.2s ease;
 }
+
 .skip-link:focus {
 	top: 0.5rem;
 	outline: 3px solid currentColor;
@@ -45,6 +46,10 @@
 	border: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
 	background-color: var(--color-bg);
 	color: var(--color-text);
@@ -52,6 +57,14 @@ body {
 	margin: 0;
   	padding: 0;
 	font-size: 16px;
+
+    /* ensure body grows to fill viewport and footer sits at bottom */
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 header, .synopsis, footer, .guitar-section {
@@ -63,7 +76,6 @@ header {
 }
 
 .synopsis {
-	/*font-weight:700;*/
 	font-size:18px;
 	font-family:Impact;
 	margin-left:100px;
@@ -90,6 +102,16 @@ footer {
 	margin-right: 0;
 	padding-left: 0;
 	padding-right: 0;
+
+	/* stick footer to viewport bottom */
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+
+/* reserve space beneath content so it doesn't underlap the fixed footer */
+main {
+    padding-bottom: 6rem; /* enough for two lines of text + icons */
 }
 
 footer a {
@@ -138,9 +160,11 @@ footer a {
 	color: var(--color-accent-light);
 	border-color: var(--color-accent-light);
 }
+
 footer a:focus {
 	outline: none;
 }
+
 footer a:focus-visible {
 	color: var(--color-footer-text);
 	outline: 3px solid var(--color-footer-text);
@@ -186,6 +210,7 @@ footer a:focus-visible {
 	font-size: 1rem;
 	cursor: pointer;
 }
+
 .orientation-control select:focus-visible,
 .type-filter-control select:focus-visible {
 	outline: 3px solid var(--color-outline, #1a1a1a);
@@ -228,29 +253,202 @@ footer a:focus-visible {
 .guitars-section.orientation-vertical .guitar-section {
 	aspect-ratio: 3/4;
 }
+
 .guitars-section.orientation-vertical .guitar-section img {
 	transform: none;
 }
 
-/* Οριζόντια: 3 στήλες, εικόνες "ξαπλωμένες" 90° */
-.guitars-section.orientation-horizontal {
-	grid-template-columns: repeat(3, 1fr);
+/* Slideshow: Splide carousel styling */
+.guitars-section.orientation-slideshow {
+	display: block !important;
+	width: 100%;
+	margin: 2rem auto;
+	position: relative;
+	height: auto;
+	min-height: 500px;
+	grid-template-columns: none;
 }
 
-.guitars-section.orientation-horizontal .guitar-section {
-	height: 220px;
-	width: 100%;
+.guitars-section.orientation-slideshow.splide {
+	overflow: hidden;
+}
+
+.guitars-section.orientation-slideshow .splide__track {
+	overflow: hidden;
+}
+
+.guitars-section.orientation-slideshow .splide__list {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.guitars-section.orientation-slideshow .splide__slide {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex: 0 0 100%;
+	min-height: 400px;
+	width: 100%;
+}
+
+.guitars-section.orientation-slideshow .guitar-section {
+	width: 70%;
+	max-width: 500px;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.guitars-section.orientation-slideshow .guitar-section__img-wrap {
+	position: relative;
+	inset: auto;
+	overflow: visible;
+}
+
+.guitars-section.orientation-slideshow .guitar-section img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 350px;
+	object-fit: contain;
+	transform: none;
+}
+
+/* Pagination dots */
+.guitars-section.orientation-slideshow .splide__pagination {
+	position: absolute;
+	bottom: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex !important;
+	justify-content: center;
+	gap: 0.8rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.guitars-section.orientation-slideshow .splide__pagination__page {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.3);
+	border: 2px solid rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+	transition: all 0.2s ease;
+	padding: 0;
+}
+
+.guitars-section.orientation-slideshow .splide__pagination__page.is-active {
+	background-color: rgba(0, 0, 0, 0.8);
+	border-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Arrow buttons */
+.guitars-section.orientation-slideshow .splide__arrows {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	transform: translateY(-50%);
+	display: flex;
+	justify-content: space-between;
+	padding: 0 1rem;
+	box-sizing: border-box;
+	pointer-events: none;
+}
+
+.guitars-section.orientation-slideshow .splide__arrow {
+	pointer-events: auto;
+	position: relative;
+	top: 0;
+	transform: none;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: white;
+	border: none;
+	width: 2.5rem;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: background-color 0.2s ease;
+	font-size: 1.5rem;
+}
+
+.guitars-section.orientation-slideshow .splide__arrow:hover {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.guitars-section.orientation-slideshow .splide__arrow:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+
+
+/* Οριζόντια: 3 στήλες, εικόνες "ξαπλωμένες" 90° */
+.guitars-section.orientation-horizontal {
+    /* always three fixed‑width columns on desktop */
+    grid-template-columns: repeat(3, 400px);
+    justify-content: center; 
+	column-gap: 15px;
+}
+
+.guitars-section.orientation-horizontal .guitar-section {
+    /* fixed size for each guitar card on large screens */
+    width: 400px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .guitars-section.orientation-horizontal .guitar-section img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	transform: rotate(90deg);
-	transform-origin: center center;
+    /* swapped dimensions; use contain so the whole guitar is visible without cropping */
+    width: 220px;
+    height: 400px;
+    object-fit: contain;
+    transform: rotate(90deg);
+    transform-origin: center center;
+}
+
+/* add a background to avoid blank gaps around contained images */
+.guitars-section.orientation-horizontal .guitar-section {
+    background-color: var(--color-accent-light);
+}
+
+/* responsive overrides identical to vertical orientation */
+@media only screen and (max-width: 1024px) {
+    .guitars-section.orientation-horizontal {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .guitars-section.orientation-horizontal {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .guitars-section.orientation-horizontal {
+        display: flex;
+        flex-direction: column;
+    }
+    .guitars-section.orientation-horizontal .guitar-section {
+        width: 100%;
+        height: auto;
+    }
+    .guitars-section.orientation-horizontal .guitar-section img {
+        width: 100%;
+        height: auto;
+        transform: rotate(90deg);
+    }
 }
 
 .guitar-section {
@@ -262,6 +460,7 @@ footer a:focus-visible {
 	outline: none;
 	contain: layout;
 }
+
 .guitar-section:focus-visible {
 	outline: 3px solid var(--color-outline);
 	outline-offset: 2px;
@@ -274,10 +473,12 @@ footer a:focus-visible {
 	overflow: hidden;
 	pointer-events: none;
 }
+
 .guitar-section__img-wrap::before,
 .guitar-section__img-wrap::after {
 	pointer-events: auto;
 }
+
 .guitar-section:focus-within .guitar-section__img-wrap {
 	pointer-events: auto;
 }
@@ -301,6 +502,7 @@ footer a:focus-visible {
 	z-index: 1;
 	box-sizing: border-box;
 }
+
 .guitar-section:hover .guitar-section__img-wrap::before,
 .guitar-section:focus-within .guitar-section__img-wrap::before {
 	opacity: 1;
@@ -328,6 +530,7 @@ footer a:focus-visible {
 	overflow: auto;
 	text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
+
 .guitar-section:hover .guitar-section__img-wrap::after,
 .guitar-section:focus-within .guitar-section__img-wrap::after {
 	opacity: 1;
@@ -345,9 +548,11 @@ footer a:focus-visible {
 	padding: 2rem;
 	box-sizing: border-box;
 }
+
 .lightbox[hidden] {
 	display: none;
 }
+
 .lightbox__close {
 	position: absolute;
 	top: 1rem;
@@ -363,12 +568,14 @@ footer a:focus-visible {
 	border-radius: 4px;
 	padding: 0;
 }
+
 .lightbox__close:hover,
 .lightbox__close:focus-visible {
 	background: #fff;
 	color: var(--color-footer-bg, #505050);
 	outline: none;
 }
+
 .lightbox__inner {
 	max-width: 90vw;
 	max-height: 85vh;
@@ -377,13 +584,21 @@ footer a:focus-visible {
 	align-items: center;
 	gap: 1rem;
 }
+
 .lightbox__img {
 	max-width: 100%;
 	max-height: 75vh;
 	width: auto;
 	height: auto;
 	object-fit: contain;
+	transition: transform 0.25s ease;
 }
+
+/* rotate the enlarged image when coming from horizontal gallery */
+.lightbox.orientation-horizontal .lightbox__img {
+	transform: rotate(90deg);
+}
+
 .lightbox__caption {
 	color: #fff;
 	text-align: center;
@@ -396,6 +611,7 @@ footer a:focus-visible {
 	.guitar-section__img-wrap::after {
 		transition: none;
 	}
+
 	.skip-link {
 		transition: none;
 	}
