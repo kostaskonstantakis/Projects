@@ -1,6 +1,3 @@
-# Projects
-This is a portfolio for most of my projects. All rights reserved ©.
-
 # 📂 Projects Portfolio
 
 Welcome to my **Projects repository** — a curated showcase of various personal and academic projects I’ve built over time.
@@ -75,4 +72,4 @@ If you’d like feedback on a specific project or want to collaborate, feel free
 This repository is licensed under the GPL-3.0 License.
 See the LICENSE file for details.
 
-Thanks for visiting! See you next time! 👋
+Thanks for visiting! Take care! See you! 👋
