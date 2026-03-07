@@ -6,7 +6,6 @@
 /* ---------- CSS variables (theme / εύκολη αλλαγή χρωμάτων) ---------- */
 :root {
 	--color-text: #1a1a1a;
-	--color-bg: #fff;
 	--color-footer-bg: #505050;
 	--color-footer-text: #fff;
 	--color-outline: #1a1a1a;
@@ -51,14 +50,12 @@ html, body {
 }
 
 body {
-	background-color: var(--color-bg);
 	color: var(--color-text);
 	overflow-x: hidden;
 	margin: 0;
   	padding: 0;
 	font-size: 16px;
-
-    /* ensure body grows to fill viewport and footer sits at bottom */
+	background-image: url("./media/partiture.jpg");
     display: flex;
     flex-direction: column;
 }
@@ -75,6 +72,31 @@ header {
 	text-decoration: overline underline;
 }
 
+/* Animation for rotating favicon */
+@keyframes rotate-favicon {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.favicon {
+	display: inline-block;
+	width: 3rem;
+	height: 3rem;
+	vertical-align: middle;
+}
+
+.favicon-rotating {
+	display: inline-block;
+	width: 3rem;
+	height: 3rem;
+	vertical-align: middle;
+	animation: rotate-favicon 2s linear infinite;
+}
+
 .synopsis {
 	font-size:18px;
 	font-family:Impact;
@@ -85,8 +107,7 @@ header {
 /* Footer: σκούρο φόντο για αντίθεση ≥4.5:1 με λευκό κείμενο (WCAG AA) */
 footer {
 	color: var(--color-footer-text);
-	width: 100%; /* 100vw */
-	/* margin-left: calc(-50vw + 50%); */
+	width: 100%; 
 	background-color: var(--color-footer-bg);
 	display: flex;
 	flex-direction: column;
@@ -96,17 +117,6 @@ footer {
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:14px;
 	line-height: 1.5;
-	/*max-width: 100vw;*/
-  	overflow-x: hidden;
-	margin-left: 0;
-	margin-right: 0;
-	padding-left: 0;
-	padding-right: 0;
-
-	/* stick footer to viewport bottom */
-	position: fixed;
-	bottom: 0;
-	left: 0;
 }
 
 /* reserve space beneath content so it doesn't underlap the fixed footer */
@@ -175,7 +185,7 @@ footer a:focus-visible {
 .guitar-section img:last-child {
 	width: 352px;
     height: auto; 
-	flex-grow: 0; /* 1 */
+	flex-grow: 0;
 }
 
 .guitars-section {

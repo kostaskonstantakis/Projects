@@ -146,6 +146,17 @@ if (ageEl) ageEl.textContent = getAge('1995-02-26');
 		} else {
 			if (section.classList.contains('orientation-slideshow')) {
 				restoreGrid();
+				// reapply type filter after restoring grid
+				var typeFilter = document.getElementById('type-filter');
+				if (typeFilter) {
+					var sections = document.querySelectorAll('.guitar-section[data-type]');
+					sections.forEach(function (el) {
+						var typeAttr = el.getAttribute('data-type') || '';
+						var types = typeAttr.split(/\s+/).filter(Boolean);
+						var match = typeFilter.value === 'all' || types.indexOf(typeFilter.value) !== -1;
+						el.classList.toggle('type-hidden', !match);
+					});
+				}
 			}
 			section.classList.remove('orientation-slideshow');
 			section.classList.remove('orientation-horizontal', 'orientation-vertical');

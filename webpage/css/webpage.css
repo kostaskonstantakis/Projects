@@ -1,5 +1,12 @@
-.main{
-    background-image:url("images/partiture.jpg");
+.main {
+    background-color: lightgray;
+    /*display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;*/
 }
 
 header{ 
@@ -18,7 +25,7 @@ header{
     font-size: 20px;
     text-align: right-side;
     background: linear-gradient(blue,purple);
-	text-decoration: underline; /*overline*/
+	text-decoration: underline; 
 }
 
 .navlist{ 
@@ -129,15 +136,6 @@ color:yellow;
 	
 }
 
-/*
-.boxed:hover{
-	transform: rotate(45deg);
-	transform: scale(2,5); 
-	transform: skew(0deg,30deg);
-	background-color:saddlebrown;
-	
-}
-*/
 .social{
 	background-color:white;
     text-align: center;
@@ -202,9 +200,6 @@ color:yellow;
     width: 120px;
     position: absolute;
     right: 0.5px;
-	/*transform: rotate(-60deg);
-	transform: scale(2,2);
-	transform: skew(25deg,10deg);*/
 }
 
 #jump_top, #translation {
