@@ -1,5 +1,164 @@
+// render guitar sections from data.js
+var currentLang = 'en';
+var guitarSections = [];
+var applyOrientation = function() {};
+var applyTypeFilter = function() {};
+
+(function() {
+    window.renderGuitars = function(guitarsToRender) {
+        var section = document.getElementById('guitars-section');
+        var dataToRender = guitarsToRender || window.guitarData;
+        if (section && dataToRender && Array.isArray(dataToRender) && window.translations) {
+            section.innerHTML = ''; // clear existing
+            guitarSections = [];
+            dataToRender.forEach(function(g) {
+                var div = document.createElement('div');
+                div.className = 'guitar-section';
+                div.tabIndex = 0;
+                div.setAttribute('role','group');
+                div.dataset.type = g.type;
+                var trans = window.translations[currentLang].guitars[g.index];
+                div.dataset.description = trans.description;
+                div.setAttribute('aria-label', trans.description);
+
+                var wrap = document.createElement('div');
+                wrap.className = 'guitar-section__img-wrap';
+                wrap.dataset.description = trans.description;
+
+                var favoriteBtn = document.createElement('button');
+                favoriteBtn.className = 'guitar-favorite-btn';
+                favoriteBtn.dataset.guitarIndex = g.index;
+                favoriteBtn.textContent = window.isFavorite && window.isFavorite(g.index) ? '❤️' : '🤍';
+                favoriteBtn.setAttribute('aria-label', 'Toggle favorite');
+                favoriteBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (window.toggleFavorite) {
+                        window.toggleFavorite(g.index);
+                    }
+                });
+                wrap.appendChild(favoriteBtn);
+
+                var img = document.createElement('img');
+                img.src = g.img;
+                img.alt = trans.alt;
+                img.width = 400;
+                img.height = 533;
+                img.dataset.guitarIndex = g.index;
+
+                wrap.appendChild(img);
+                div.appendChild(wrap);
+
+                section.appendChild(div);
+                guitarSections.push(div);
+            });
+            // Trigger lazy loading observer
+            if (window.observeImages) {
+                window.observeImages();
+            }
+        }
+    };
+    window.renderGuitars();
+
+    // Language switcher
+    var langFilter = document.getElementById('language-filter');
+    if (langFilter) {
+        function updateLanguage() {
+            currentLang = langFilter.value;
+            // Update page title
+            if (document.getElementById('page-title')) {
+                document.getElementById('page-title').textContent = window.translations[currentLang].page_title;
+            } else {
+                document.title = window.translations[currentLang].page_title;
+            }
+            // Update header text
+            var headerText = document.getElementById('page-header-text');
+            if (headerText) {
+                headerText.textContent = window.translations[currentLang].header_text;
+            }
+            // Update synopsis
+            var synopsisEl = document.querySelector('.synopsis');
+            if (synopsisEl) {
+                synopsisEl.innerHTML = window.translations[currentLang].synopsis;
+            }
+            // Update labels
+            var orientationLabel = document.querySelector('label[for="orientation-filter"]');
+            if (orientationLabel) {
+                orientationLabel.innerHTML = '<strong>' + window.translations[currentLang].orientation_label + '</strong>';
+            }
+            var typeLabel = document.querySelector('label[for="type-filter"]');
+            if (typeLabel) {
+                typeLabel.innerHTML = '<strong>' + window.translations[currentLang].type_label + '</strong>';
+            }
+            // Update options
+            var orientationSelect = document.getElementById('orientation-filter');
+            if (orientationSelect) {
+                var opts = orientationSelect.options;
+                for (var i = 0; i < opts.length; i++) {
+                    var val = opts[i].value;
+                    opts[i].textContent = window.translations[currentLang].orientation_options[val];
+                }
+            }
+            var typeSelect = document.getElementById('type-filter');
+            if (typeSelect) {
+                var opts = typeSelect.options;
+                for (var i = 0; i < opts.length; i++) {
+                    var val = opts[i].value;
+                    opts[i].textContent = window.translations[currentLang].type_options[val];
+                }
+            }
+            // Update disclaimer
+            var disclaimerEl = document.querySelector('.disclaimer');
+            if (disclaimerEl) {
+                disclaimerEl.innerHTML = '<strong><i>' + window.translations[currentLang].disclaimer + '</i></strong>';
+            }
+            // Update footer
+            var footerEl = document.getElementById('footer-text');
+            if (footerEl) {
+                footerEl.innerHTML = window.translations[currentLang].footer_text;
+            }
+            // Update search placeholder
+            var searchInput = document.getElementById('search-filter');
+            if (searchInput) {
+                searchInput.placeholder = window.translations[currentLang].search_placeholder;
+            }
+            // Update sort label
+            var sortLabel = document.querySelector('label[for="sort-filter"]');
+            if (sortLabel) {
+                sortLabel.innerHTML = '<strong>' + window.translations[currentLang].sort_label + '</strong>';
+            }
+            // Update sort options
+            var sortSelect = document.getElementById('sort-filter');
+            if (sortSelect) {
+                var opts = sortSelect.options;
+                for (var i = 0; i < opts.length; i++) {
+                    var val = opts[i].value;
+                    opts[i].textContent = window.translations[currentLang].sort_options[val];
+                }
+            }
+            // Update year and age
+            updateYearAndAge();
+            // Re-render guitars
+            window.renderGuitars();
+            // Re-apply filters
+            applyOrientation();
+            applyTypeFilter();
+            // Save to localStorage
+            try { localStorage.setItem('guitar-language', currentLang); } catch (e) {}
+        }
+        // Load from localStorage
+        try {
+            var savedLang = localStorage.getItem('guitar-language');
+            if (savedLang && window.translations[savedLang]) {
+                currentLang = savedLang;
+                langFilter.value = savedLang;
+            }
+        } catch (e) {}
+        updateLanguage();
+        langFilter.addEventListener('change', updateLanguage);
+    }
+})();
+
 var currentYear = new Date().getFullYear();
-document.getElementById('year').textContent = currentYear;
 
 function getAge(birthDate) {
 	var today = new Date();
@@ -12,8 +171,11 @@ function getAge(birthDate) {
 	return age;
 }
 
-var ageEl = document.getElementById('age');
-if (ageEl) ageEl.textContent = getAge('1995-02-26');
+function updateYearAndAge() {
+	document.getElementById('year').textContent = currentYear;
+	var ageEl = document.getElementById('age');
+	if (ageEl) ageEl.textContent = getAge('1995-02-26');
+}
 
 /* Orientation: εφαρμογή + αποθήκευση στο localStorage */
 (function () {
@@ -118,6 +280,14 @@ if (ageEl) ageEl.textContent = getAge('1995-02-26');
 				pagination: 'slider'
 			}).mount();
 			console.log('Splide mounted with ' + slideCount + ' slides');
+			
+			// Update slide counter
+			if (window.updateSlideCounter) {
+				window.updateSlideCounter(0, slideCount);
+				splideInstance.on('move', function(newIndex) {
+					window.updateSlideCounter(newIndex, slideCount);
+				});
+			}
 		} catch (e) {
 			console.error('Splide initialization failed:', e);
 		}
@@ -131,7 +301,7 @@ if (ageEl) ageEl.textContent = getAge('1995-02-26');
 		}
 	}
 
-	function applyOrientation() {
+	applyOrientation = function() {
 		var value = filter.value;
 		var typeFilterControl = document.querySelector('.type-filter-control');
 		
@@ -147,15 +317,8 @@ if (ageEl) ageEl.textContent = getAge('1995-02-26');
 			if (section.classList.contains('orientation-slideshow')) {
 				restoreGrid();
 				// reapply type filter after restoring grid
-				var typeFilter = document.getElementById('type-filter');
-				if (typeFilter) {
-					var sections = document.querySelectorAll('.guitar-section[data-type]');
-					sections.forEach(function (el) {
-						var typeAttr = el.getAttribute('data-type') || '';
-						var types = typeAttr.split(/\s+/).filter(Boolean);
-						var match = typeFilter.value === 'all' || types.indexOf(typeFilter.value) !== -1;
-						el.classList.toggle('type-hidden', !match);
-					});
+				if (applyTypeFilter) {
+					applyTypeFilter();
 				}
 			}
 			section.classList.remove('orientation-slideshow');
@@ -167,7 +330,7 @@ if (ageEl) ageEl.textContent = getAge('1995-02-26');
 			}
 		}
 		try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
-	}
+	};
 
 	try {
 		var saved = localStorage.getItem(STORAGE_KEY);
@@ -182,18 +345,17 @@ if (ageEl) ageEl.textContent = getAge('1995-02-26');
 /* Φίλτρο τύπου (electric / bass / acoustic) */
 (function () {
 	var filter = document.getElementById('type-filter');
-	var sections = document.querySelectorAll('.guitar-section[data-type]');
-	if (!filter || !sections.length) return;
+	if (!filter) return;
 
-	function applyTypeFilter() {
+	applyTypeFilter = function() {
 		var value = filter.value;
-		sections.forEach(function (el) {
+		guitarSections.forEach(function (el) {
 			var typeAttr = el.getAttribute('data-type') || '';
 			var types = typeAttr.split(/\s+/).filter(Boolean);
 			var match = value === 'all' || types.indexOf(value) !== -1;
 			el.classList.toggle('type-hidden', !match);
 		});
-	}
+	};
 	filter.addEventListener('change', applyTypeFilter);
 	applyTypeFilter();
 })();
@@ -231,20 +393,24 @@ if (ageEl) ageEl.textContent = getAge('1995-02-26');
 		document.body.style.overflow = '';
 	}
 
-	document.querySelectorAll('.guitar-section').forEach(function (section) {
-		var img = section.querySelector('img');
-		if (!img) return;
+	// Use event delegation
+	var section = document.getElementById('guitars-section');
+	if (section) {
 		section.addEventListener('click', function (e) {
+			var guitarSection = e.target.closest('.guitar-section');
+			if (!guitarSection) return;
 			e.preventDefault();
+			var img = guitarSection.querySelector('img');
+			if (!img) return;
 			// toggle overlay on click
-			section.classList.toggle('active');
+			guitarSection.classList.toggle('active');
 			// remove active class from siblings
 			document.querySelectorAll('.guitar-section.active').forEach(function (el) {
-				if (el !== section) el.classList.remove('active');
+				if (el !== guitarSection) el.classList.remove('active');
 			});
-			openLightbox(img.src, section.getAttribute('data-description') || img.alt);
+			openLightbox(img.src, guitarSection.getAttribute('data-description') || img.alt);
 		});
-	});
+	}
 	
 	// close overlay when clicking elsewhere
 	document.addEventListener('click', function (e) {

@@ -10,6 +10,33 @@
 	--color-footer-text: #fff;
 	--color-outline: #1a1a1a;
 	--color-accent-light: #e0e0e0;
+	--bg-primary: #ffffff;
+	--bg-secondary: #f5f5f5;
+}
+
+/* Dark mode */
+:root[data-theme="dark"] {
+	--color-text: #e0e0e0;
+	--color-footer-bg: #1a1a1a;
+	--color-footer-text: #e0e0e0;
+	--color-outline: #e0e0e0;
+	--color-accent-light: #333333;
+	--bg-primary: #1a1a1a;
+	--bg-secondary: #2a2a2a;
+}
+
+:root[data-theme="dark"] body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.7); /* 70% opacity */
+	pointer-events: none;
+	z-index: -1;
+}
+
+/* Smooth transitions */
+* {
+	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Skip link: κρυφό μέχρι focus για screen reader / πληκτρολόγιο */
@@ -32,6 +59,35 @@
 	outline-offset: 2px;
 }
 
+/* Dark mode toggle button */
+.dark-mode-toggle {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	background: var(--color-footer-bg);
+	color: var(--color-footer-text);
+	border: 2px solid var(--color-outline);
+	border-radius: 50%;
+	width: 2.5rem;
+	height: 2.5rem;
+	font-size: 1.2rem;
+	cursor: pointer;
+	z-index: 99;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+	transform: scale(1.1);
+}
+
+.dark-mode-toggle:focus-visible {
+	outline: 3px solid var(--color-outline);
+	outline-offset: 2px;
+}
+
 /* Κρυφό οπτικά, διαθέσιμο σε screen readers */
 .visually-hidden {
 	position: absolute;
@@ -51,6 +107,7 @@ html, body {
 
 body {
 	color: var(--color-text);
+	background-color: var(--bg-primary);
 	overflow-x: hidden;
 	margin: 0;
   	padding: 0;
@@ -188,6 +245,50 @@ footer a:focus-visible {
 	flex-grow: 0;
 }
 
+.guitar-section__img-wrap {
+	position: relative;
+}
+
+.guitar-favorite-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: rgba(255, 255, 255, 0.9);
+	border: 2px solid transparent;
+	border-radius: 50%;
+	width: 2.5rem;
+	height: 2.5rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+	transition: all 0.2s ease;
+}
+
+.guitar-favorite-btn:hover {
+	transform: scale(1.1);
+	background: rgba(255, 255, 255, 1);
+}
+
+.guitar-favorite-btn.favorite-active {
+	background: #ff6b6b;
+}
+
+.guitar-favorite-btn:focus-visible {
+	outline: 2px solid var(--color-outline);
+	outline-offset: 2px;
+}
+
+:root[data-theme="dark"] .guitar-favorite-btn {
+	background: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="dark"] .guitar-favorite-btn:hover {
+	background: rgba(0, 0, 0, 1);
+}
+
 .guitars-section {
 	display: grid;
 	grid-gap: 5px;
@@ -205,24 +306,51 @@ footer a:focus-visible {
 }
 
 .orientation-control,
-.type-filter-control {
+.type-filter-control,
+.search-control,
+.sort-control {
 	text-align: center;
 }
 
 .orientation-control label,
-.type-filter-control label {
+.type-filter-control label,
+.sort-control label {
 	margin-right: 8px;
 }
 
 .orientation-control select,
-.type-filter-control select {
+	.type-filter-control select,
+	.language-control select,
+	.sort-control select {
 	padding: 6px 12px;
 	font-size: 1rem;
 	cursor: pointer;
+	background-color: var(--bg-primary);
+	color: var(--color-text);
+	border: 1px solid var(--color-outline);
+	border-radius: 4px;
+}
+
+.search-control input {
+	padding: 6px 12px;
+	font-size: 1rem;
+	background-color: var(--bg-primary);
+	color: var(--color-text);
+	border: 1px solid var(--color-outline);
+	border-radius: 4px;
+	min-width: 200px;
+}
+
+.search-control input::placeholder {
+	color: var(--color-text);
+	opacity: 0.6;
 }
 
 .orientation-control select:focus-visible,
-.type-filter-control select:focus-visible {
+	.type-filter-control select:focus-visible,
+	.language-control select:focus-visible,
+	.sort-control select:focus-visible,
+	.search-control input:focus-visible {
 	outline: 3px solid var(--color-outline, #1a1a1a);
 	outline-offset: 2px;
 }
@@ -390,6 +518,29 @@ footer a:focus-visible {
 	cursor: not-allowed;
 }
 
+/* Slideshow counter */
+.slideshow-counter {
+	position: absolute;
+	top: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	background: rgba(0, 0, 0, 0.6);
+	color: white;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: bold;
+	display: none;
+	z-index: 11;
+}
+
+.guitars-section.orientation-slideshow {
+	position: relative;
+}
+
+.guitars-section.orientation-slideshow .slideshow-counter {
+	display: block;
+}
 
 
 /* Οριζόντια: 3 στήλες, εικόνες "ξαπλωμένες" 90° */
