@@ -1,0 +1,10 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+guitars-scripts:
+  js:
+    js/guitars.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

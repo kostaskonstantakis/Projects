@@ -29,7 +29,7 @@
 	content: "";
 	position: fixed;
 	inset: 0;
-	background: rgba(0, 0, 0, 0.7); /* 70% opacity */
+	background: rgba(0, 0, 0, 0.3); 
 	pointer-events: none;
 	z-index: -1;
 }
@@ -195,6 +195,11 @@ footer a {
 	height: 1.5rem;
 	border-radius: 50%;
 	border: 1px solid transparent;
+}
+
+.footer-link svg.footer-icon-svg {
+	width: 1em;
+	height: 1em;
 }
 
 .guitars-section {

@@ -1,0 +1,12 @@
+{
+  "name": "guitars-theme",
+  "version": "1.0.0",
+  "description": "Tailwind setup for Guitars Drupal theme",
+  "scripts": {
+    "dev": "tailwindcss -i ./css/input.css -o ./css/style.css --watch",
+    "build": "tailwindcss -i ./css/input.css -o ./css/style.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}

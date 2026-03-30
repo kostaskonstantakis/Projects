@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Theme hooks for Guitars Theme.
+ */
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ *
+ * Παράδειγμα, αν θέλεις ξεχωριστό template για front page αργότερα.
+ */
+function guitars_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    $suggestions[] = 'page__front';
+  }
+}

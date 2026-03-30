@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-text: #1a1a1a;
+        --color-footer-bg: #505050;
+        --color-footer-text: #fff;
+        --color-outline: #1a1a1a;
+        --bg-primary: #ffffff;
+    }
+
+    [data-theme="dark"] {
+        --color-text: #e0e0e0;
+        --color-footer-bg: #1a1a1a;
+        --color-footer-text: #e0e0e0;
+        --color-outline: #e0e0e0;
+        --bg-primary: #1a1a1a;
+    }
+
+    body {
+        @apply bg-[var(--bg-primary)] text-[var(--color-text)] m-0 font-sans;
+    }
+}
+
+@layer utilities {
+    .type-hidden {
+        display: none !important;
+    }
+}

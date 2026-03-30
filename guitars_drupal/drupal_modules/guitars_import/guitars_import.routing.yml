@@ -1,0 +1,7 @@
+guitars_import.import:
+  path: "/admin/config/guitars/import"
+  defaults:
+    _controller: '\Drupal\guitars_import\Controller\ImportController::import'
+    _title: "Import Guitars from Data"
+  requirements:
+    _permission: "administer site configuration"

@@ -1,0 +1,58 @@
+<div class="guitars-controls mb-8 text-center flex justify-center gap-4">
+  <label for="orientation-filter" class="flex items-center gap-2">
+    <span>Orientation:</span>
+    <select id="orientation-filter" class="p-2 border rounded dark:bg-gray-800 dark:border-gray-600">
+      <option value="vertical">Vertical</option>
+      <option value="horizontal">Horizontal</option>
+      <option value="slideshow">Slideshow</option>
+    </select>
+  </label>
+
+  <label for="type-filter" class="flex items-center gap-2">
+    <span>Type:</span>
+    <select id="type-filter" class="p-2 border rounded dark:bg-gray-800 dark:border-gray-600">
+      <option value="all">All</option>
+      <option value="electric">Electric</option>
+      <option value="bass">Bass</option>
+      <option value="acoustic">Acoustic</option>
+      <option value="signature">Signature</option>
+      <option value="7-string">7-string</option>
+      <option value="baritone">Baritone</option>
+    </select>
+  </label>
+</div>
+
+<section id="guitars-section"
+         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 w-full orientation-vertical"
+         aria-label="Guitar gallery">
+  {% for row in rows %}
+    <div class="guitar-section relative inline-block overflow-hidden focus:outline-none ring-offset-2 ring-offset-[var(--bg-primary)] focus:ring-4 focus:ring-[var(--color-outline)] group"
+         tabindex="0"
+         role="group"
+         data-type="{{ row.content['#row']._entity.field_type.value|default('all')|lower }}"
+         data-description="{{ row.content['#row']._entity.body.summary|default(row.content['#row']._entity.body.value)|striptags|trim }}">
+      <div class="guitar-section__img-wrap w-full h-full relative"
+           data-description="{{ row.content['#row']._entity.body.summary|default(row.content['#row']._entity.body.value)|striptags|trim }}">
+        {# Wrapping content to enforce image sizing via block, full w/h and cover #}
+        <div class="w-full h-full [&_img]:block [&_img]:w-full [&_img]:h-full [&_img]:object-cover">
+          {{ row.content }}
+        </div>
+        <!-- Overlay Background -->
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none z-10"></div>
+        <!-- Overlay Text -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white p-4 text-center text-base leading-snug w-3/5 max-w-[20em] drop-shadow-md opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+          {{ row.content['#row']._entity.body.summary|default(row.content['#row']._entity.body.value)|striptags|trim }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+<!-- Lightbox Skeleton (Tailwind) -->
+<div id="lightbox" hidden class="fixed inset-0 bg-black/80 z-[1000] items-center justify-center [&:not([hidden])]:flex" aria-hidden="true">
+  <button class="lightbox__close absolute top-5 right-5 text-4xl bg-transparent border-none text-white cursor-pointer hover:text-gray-300" aria-label="Close">&times;</button>
+  <div class="text-center">
+    <img class="lightbox__img max-h-[80vh] max-w-[90vw] object-contain shadow-2xl" src="" alt="">
+    <div class="lightbox__caption text-white mt-4 text-xl tracking-wide"></div>
+  </div>
+</div>

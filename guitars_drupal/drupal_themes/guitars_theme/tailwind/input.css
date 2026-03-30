@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Minimal starter theme styles */
+@layer base {
+  :root {
+    --color-text: #1a1a1a;
+    --color-bg: #ffffff;
+    --color-footer-bg: #505050;
+    --color-footer-text: #ffffff;
+  }
+
+  [data-theme="dark"] {
+    --color-text: #e0e0e0;
+    --color-bg: #1a1a1a;
+    --color-footer-bg: #111111;
+    --color-footer-text: #e0e0e0;
+  }
+
+  body {
+    @apply m-0;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+@layer components {
+  .guitars-section {
+    @apply grid gap-2;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .site-footer {
+    background: var(--color-footer-bg);
+    color: var(--color-footer-text);
+    @apply py-4 text-center;
+  }
+}

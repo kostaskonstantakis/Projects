@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Schecter Blackjack ATX C-1",
+    "description": "Schecter Blackjack ATX C-1",
+    "img": "css/media/schecter-blackjack.png",
+    "type": "electric"
+  },
+  {
+    "title": "Solar A2-7 Red Matte",
+    "description": "Solar A2-7 Red Matte",
+    "img": "css/media/solar-a2-7-red-matte.png",
+    "type": "electric"
+  },
+  {
+    "title": "Kirk Hammett Washburn student series starter pack",
+    "description": "Kirk Hammett Washburn student series starter pack",
+    "img": "css/media/kirk-hammett-washburn.png",
+    "type": "electric signature"
+  },
+  {
+    "title": "Cort B4 Element bass",
+    "description": "Cort B4 Element bass",
+    "img": "css/media/cort-b4-element.png",
+    "type": "bass"
+  },
+  {
+    "title": "Fender Squier Telecaster",
+    "description": "Fender Squier Telecaster",
+    "img": "css/media/squier-telecaster.png",
+    "type": "electric"
+  },
+  {
+    "title": "Fender Squier Stagemaster",
+    "description": "Fender Squier Stagemaster",
+    "img": "css/media/squier-stagemaster.png",
+    "type": "electric"
+  },
+  {
+    "title": "Yamaha F310 Acoustic",
+    "description": "Yamaha F310 Acoustic",
+    "img": "css/media/yamaha-f310-acoustic.png",
+    "type": "acoustic"
+  },
+  {
+    "title": "Harley Benton JA123 Baritone",
+    "description": "Harley Benton JA123 Baritone",
+    "img": "css/media/harley-benton-ja123-baritone.png",
+    "type": "electric"
+  },
+  {
+    "title": "Jackson Misha Mansoor Juggernaut",
+    "description": "Jackson Misha Mansoor Juggernaut",
+    "img": "css/media/jackson-misha-mansoor-juggernaut.png",
+    "type": "electric signature"
+  }
+]

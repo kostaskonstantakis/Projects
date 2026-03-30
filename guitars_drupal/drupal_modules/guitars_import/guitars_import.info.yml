@@ -1,0 +1,9 @@
+name: "Guitars Import"
+type: module
+description: "Imports guitars into the Guitar content type from a static JSON file."
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:node
+  - drupal:image
+  - drupal:options

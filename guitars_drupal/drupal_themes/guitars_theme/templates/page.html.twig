@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+  </head>
+  <body{{ attributes.addClass('text-[var(--color-text)]', 'bg-[var(--bg-primary)]', 'm-0', 'font-sans', 'transition-colors', 'duration-300') }}>
+    <a href="#main-content" class="absolute -top-12 left-2 px-4 py-2 bg-gray-900 text-white no-underline z-[100] focus:top-2 focus:outline focus:outline-4 focus:outline-current transition-all">Skip to main content</a>
+    <header class="text-center p-4 relative">
+      <button id="dark-mode-toggle" class="absolute right-4 top-4 p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors text-xl" aria-label="Toggle dark mode">🌙</button>
+      {{ page.header }}
+    </header>
+    <main id="main-content" class="p-4 md:p-8 min-h-[70vh]">
+      {{ page.content }}
+    </main>
+    <footer class="text-center bg-[#505050] dark:bg-[#1a1a1a] text-white py-6 mt-8">
+      {{ page.footer }}
+    </footer>
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+  </body>
+</html>

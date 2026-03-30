@@ -1,0 +1,100 @@
+<?php
+
+use Drupal\node\Entity\NodeType;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\field\Entity\FieldConfig;
+
+/**
+ * Implements hook_install().
+ */
+function guitars_import_install() {
+  // 1. Create the Guitar content type.
+  if (!NodeType::load('guitar')) {
+    $node_type = NodeType::create([
+      'type' => 'guitar',
+      'name' => 'Guitar',
+      'description' => 'A guitar item.',
+      'display_submitted' => FALSE,
+    ]);
+    $node_type->save();
+    
+    // Create the body field using the node module's helper.
+    node_add_body_field($node_type, 'Description');
+  }
+
+  // 2. Define the exact fields we need for Guitars
+  $fields = [
+    'field_image' => [
+      'type' => 'image',
+      'label' => 'Image',
+      'widget' => 'image_image',
+      'formatter' => 'image',
+      'storage_settings' => [],
+    ],
+    'field_type' => [
+      'type' => 'list_string',
+      'label' => 'Guitar Type',
+      'widget' => 'options_select',
+      'formatter' => 'list_default',
+      'storage_settings' => [
+        'allowed_values' => [
+          'electric' => 'Electric',
+          'bass' => 'Bass',
+          'acoustic' => 'Acoustic',
+          'signature' => 'Signature',
+          '7-string' => '7-string',
+          'baritone' => 'Baritone',
+        ],
+      ],
+    ],
+  ];
+
+  // 3. Programmatically provision storage and field configs
+  foreach ($fields as $field_name => $field_info) {
+    if (!FieldStorageConfig::loadByName('node', $field_name)) {
+      FieldStorageConfig::create([
+        'field_name' => $field_name,
+        'entity_type' => 'node',
+        'type' => $field_info['type'],
+        'cardinality' => 1,
+        'settings' => $field_info['storage_settings'],
+      ])->save();
+    }
+
+    if (!FieldConfig::loadByName('node', 'guitar', $field_name)) {
+      FieldConfig::create([
+        'field_name' => $field_name,
+        'entity_type' => 'node',
+        'bundle' => 'guitar',
+        'label' => $field_info['label'],
+      ])->save();
+    }
+  }
+
+  // 4. Update the default form display (so fields appear on Add/Edit form)
+  $form_display = \Drupal::entityTypeManager()->getStorage('entity_form_display')->load('node.guitar.default');
+  if (!$form_display) {
+    $form_display = \Drupal::entityTypeManager()->getStorage('entity_form_display')->create([
+      'targetEntityType' => 'node',
+      'bundle' => 'guitar',
+      'mode' => 'default',
+      'status' => TRUE,
+    ]);
+  }
+  
+  // 5. Update the default view display (so fields appear on node view)
+  $view_display = \Drupal::entityTypeManager()->getStorage('entity_view_display')->load('node.guitar.default');
+  if (!$view_display) {
+    $view_display = \Drupal::entityTypeManager()->getStorage('entity_view_display')->create([
+      'targetEntityType' => 'node',
+      'bundle' => 'guitar',
+      'mode' => 'default',
+      'status' => TRUE,
+    ]);
+  }
+
+  foreach ($fields as $field_name => $field_info) {
+    $form_display->setComponent($field_name, ['type' => $field_info['widget']])->save();
+    $view_display->setComponent($field_name, ['type' => $field_info['formatter']])->save();
+  }
+}

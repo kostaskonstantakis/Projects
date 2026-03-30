@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@source "../index.html";
+@source "../js/**/*.js";
+
+/* Κρατάμε τα CSS variables για dark mode */
+:root {
+  --color-text: #1a1a1a;
+  --color-footer-bg: #505050;
+  --color-footer-text: #fff;
+  --color-outline: #1a1a1a;
+  --color-accent-light: #e0e0e0;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+}
+
+[data-theme="dark"] {
+  --color-text: #e0e0e0;
+  --color-footer-bg: #1a1a1a;
+  --color-footer-text: #e0e0e0;
+  --color-outline: #e0e0e0;
+  --color-accent-light: #333333;
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2a2a2a;
+}
+
+/* Δεν μπορεί να γίνει Tailwind — κρατάμε ως custom */
+@keyframes rotate-favicon {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.favicon-rotating {
+  animation: rotate-favicon 2s linear infinite;
+}
+
+/* Overlay hover text μέσω ::after — δεν υποστηρίζεται από Tailwind */
+.guitar-section__img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.guitar-section__img-wrap::after {
+  content: attr(data-description);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.4;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 2;
+  width: 60%;
+  max-width: 20em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+.guitar-section:hover .guitar-section__img-wrap::before,
+.guitar-section:focus-within .guitar-section__img-wrap::before,
+.guitar-section.active .guitar-section__img-wrap::before,
+.guitar-section:hover .guitar-section__img-wrap::after,
+.guitar-section:focus-within .guitar-section__img-wrap::after,
+.guitar-section.active .guitar-section__img-wrap::after {
+  opacity: 1;
+}
+
+/* Slideshow / Splide overrides */
+.guitars-section.orientation-slideshow { display: block !important; }
+.guitars-section.orientation-slideshow .splide__slide {
+  display: flex; align-items: center; justify-content: center;
+  flex: 0 0 100%; min-height: 400px;
+}
+.guitars-section.orientation-slideshow .guitar-section__img-wrap img {
+  max-width: 90%; max-height: 350px; object-fit: contain;
+}
+.guitars-section.orientation-slideshow .slideshow-counter { display: block; }
+
+/* Horizontal rotation */
+.guitars-section.orientation-horizontal .guitar-section img {
+  transform: rotate(90deg);
+  transform-origin: center center;
+}
+.lightbox.orientation-horizontal .lightbox__img {
+  transform: rotate(90deg);
+}
+
+/* type-hidden */
+.guitar-section.type-hidden { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .guitar-section__img-wrap::before,
+  .guitar-section__img-wrap::after,
+  .skip-link { transition: none; }
+  .favicon-rotating { animation: none; }
+}
+
+.guitars-section.orientation-horizontal .guitar-section {
+  width: 400px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.guitars-section.orientation-horizontal .guitar-section img {
+  width: 400px;
+  height: 220px;
+  object-fit: cover;
+  transform: none; /* αν δεν θες περιστροφή */
+}
+
+[data-theme="dark"] body {
+  opacity: 0.5;
+}
