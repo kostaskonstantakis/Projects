@@ -32,13 +32,13 @@
   {
     "title": "Fender Squier Stagemaster",
     "description": "Fender Squier Stagemaster",
-    "img": "css/media/squier-stagemaster.png",
+    "img": "./css/media/squier-stagemaster.png",
     "type": "electric"
   },
   {
     "title": "Yamaha F310 Acoustic",
     "description": "Yamaha F310 Acoustic",
-    "img": "css/media/yamaha-f310-acoustic.png",
+    "img": "/css/media/yamaha-acoustic.png",
     "type": "acoustic"
   },
   {
