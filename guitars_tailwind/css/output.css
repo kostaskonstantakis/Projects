@@ -1,4 +1,4 @@
-/*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.3.1 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -202,7 +202,7 @@
     position: relative;
   }
   .inset-0 {
-    inset: calc(var(--spacing) * 0);
+    inset: 0;
   }
   .-top-12 {
     top: calc(var(--spacing) * -12);
@@ -210,23 +210,14 @@
   .top-4 {
     top: calc(var(--spacing) * 4);
   }
-  .top-\[10px\] {
-    top: 10px;
-  }
   .right-4 {
     right: calc(var(--spacing) * 4);
-  }
-  .right-\[10px\] {
-    right: 10px;
   }
   .left-1\/2 {
     left: calc(1 / 2 * 100%);
   }
   .left-2 {
     left: calc(var(--spacing) * 2);
-  }
-  .z-10 {
-    z-index: 10;
   }
   .z-\[11\] {
     z-index: 11;
@@ -241,7 +232,7 @@
     z-index: 1000;
   }
   .m-0 {
-    margin: calc(var(--spacing) * 0);
+    margin: 0;
   }
   .m-\[10px\] {
     margin: 10px;
@@ -257,6 +248,9 @@
   }
   .mr-2 {
     margin-right: calc(var(--spacing) * 2);
+  }
+  .mb-0 {
+    margin-bottom: 0;
   }
   .mb-2\.5 {
     margin-bottom: calc(var(--spacing) * 2.5);
@@ -379,6 +373,9 @@
   .items-center {
     align-items: center;
   }
+  .items-stretch {
+    align-items: stretch;
+  }
   .justify-center {
     justify-content: center;
   }
@@ -393,6 +390,9 @@
   }
   .gap-\[5px\] {
     gap: 5px;
+  }
+  .self-end {
+    align-self: flex-end;
   }
   .overflow-hidden {
     overflow: hidden;
@@ -444,12 +444,6 @@
       background-color: color-mix(in oklab, var(--color-black) 85%, transparent);
     }
   }
-  .bg-white\/90 {
-    background-color: color-mix(in srgb, #fff 90%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-white) 90%, transparent);
-    }
-  }
   .bg-\[url\(\'\.\/media\/partiture\.jpg\'\)\] {
     background-image: url('./media/partiture.jpg');
   }
@@ -473,6 +467,9 @@
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
+  }
+  .pb-0 {
+    padding-bottom: 0;
   }
   .pb-2\.5 {
     padding-bottom: calc(var(--spacing) * 2.5);
@@ -683,12 +680,6 @@
       outline-width: 1px;
     }
   }
-  .focus-visible\:outline-2 {
-    &:focus-visible {
-      outline-style: var(--tw-outline-style);
-      outline-width: 2px;
-    }
-  }
   .focus-visible\:outline-\[3px\] {
     &:focus-visible {
       outline-style: var(--tw-outline-style);
@@ -719,6 +710,21 @@
     &:focus-visible {
       --tw-outline-style: none;
       outline-style: none;
+    }
+  }
+  .sm\:grid-cols-1 {
+    @media (width >= 40rem) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+  .md\:grid-cols-2 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .lg\:grid-cols-3 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 }
@@ -780,11 +786,26 @@
   max-width: 20em;
   text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
-.guitar-section:hover .guitar-section__img-wrap::before, .guitar-section:focus-within .guitar-section__img-wrap::before, .guitar-section.active .guitar-section__img-wrap::before, .guitar-section:hover .guitar-section__img-wrap::after, .guitar-section:focus-within .guitar-section__img-wrap::after, .guitar-section.active .guitar-section__img-wrap::after {
+.guitar-section:hover .guitar-section__img-wrap::before,
+.guitar-section:focus-within .guitar-section__img-wrap::before,
+.guitar-section.active .guitar-section__img-wrap::before,
+.guitar-section:hover .guitar-section__img-wrap::after,
+.guitar-section:focus-within .guitar-section__img-wrap::after,
+.guitar-section.active .guitar-section__img-wrap::after {
   opacity: 1;
 }
+.guitar-section {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+  @media (width >= 40rem) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 .guitars-section.orientation-slideshow {
-  display: block !important;
+  display: flex !important;
+  flex-direction: column;
+  flex: 1;
 }
 .guitars-section.orientation-slideshow .splide__slide {
   display: flex;
@@ -793,6 +814,9 @@
   flex: 0 0 100%;
   min-height: 400px;
 }
+.guitars-section.orientation-slideshow .splide__track {
+  flex: 1;
+}
 .guitars-section.orientation-slideshow .guitar-section__img-wrap img {
   max-width: 90%;
   max-height: 350px;
@@ -800,6 +824,42 @@
 }
 .guitars-section.orientation-slideshow .slideshow-counter {
   display: block;
+}
+.guitars-section.orientation-slideshow .splide__arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+.guitars-section.orientation-slideshow .splide__arrow {
+  pointer-events: auto;
+  position: relative;
+  top: 0 !important;
+  transform: none !important;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  color: white;
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  font-size: 1.5rem;
+}
+.guitars-section.orientation-slideshow .splide__arrow:hover {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+.guitars-section.orientation-slideshow .splide__arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 .guitars-section.orientation-horizontal .guitar-section img {
   transform: rotate(90deg);
@@ -812,7 +872,9 @@
   display: none !important;
 }
 @media (prefers-reduced-motion: reduce) {
-  .guitar-section__img-wrap::before, .guitar-section__img-wrap::after, .skip-link {
+  .guitar-section__img-wrap::before,
+  .guitar-section__img-wrap::after,
+  .skip-link {
     transition: none;
   }
   .favicon-rotating {
@@ -820,17 +882,28 @@
   }
 }
 .guitars-section.orientation-horizontal .guitar-section {
-  width: 400px;
+  display: grid;
   height: 220px;
-  display: flex;
+  width: 400px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
   justify-content: center;
+  gap: 5px;
+  @media (width >= 40rem) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (width >= 64rem) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 .guitars-section.orientation-horizontal .guitar-section img {
-  width: 400px;
   height: 220px;
-  object-fit: cover;
+  width: 400px;
   transform: none;
+  object-fit: cover;
 }
 [data-theme="dark"] body {
   opacity: 0.5;

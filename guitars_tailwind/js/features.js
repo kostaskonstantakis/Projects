@@ -7,9 +7,10 @@
 
 	function setDarkMode(isDark) {
 		document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-       // document.documentElement.setAttribute('opacity', isDark ? '0.5' : '1');
 		if (darkModeToggle) {
 			darkModeToggle.textContent = isDark ? '🌙' : '☀️';
+			darkModeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+			darkModeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
 		}
 		try {
 			localStorage.setItem(darkModeKey, isDark ? 'true' : 'false');

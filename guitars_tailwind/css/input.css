@@ -71,16 +71,68 @@
   opacity: 1;
 }
 
+.guitar-section {
+  @apply grid grid-cols-4 gap-[5px] sm:grid-cols-3;
+}
+
 /* Slideshow / Splide overrides */
-.guitars-section.orientation-slideshow { display: block !important; }
+.guitars-section.orientation-slideshow { 
+  display: flex !important; 
+  flex-direction: column;
+  flex: 1;
+}
 .guitars-section.orientation-slideshow .splide__slide {
   display: flex; align-items: center; justify-content: center;
   flex: 0 0 100%; min-height: 400px;
+}
+.guitars-section.orientation-slideshow .splide__track {
+  flex: 1;
 }
 .guitars-section.orientation-slideshow .guitar-section__img-wrap img {
   max-width: 90%; max-height: 350px; object-fit: contain;
 }
 .guitars-section.orientation-slideshow .slideshow-counter { display: block; }
+
+/* Arrow buttons */
+.guitars-section.orientation-slideshow .splide__arrows {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	transform: translateY(-50%);
+	display: flex;
+	justify-content: space-between;
+	padding: 0 1rem;
+	box-sizing: border-box;
+	pointer-events: none;
+}
+
+.guitars-section.orientation-slideshow .splide__arrow {
+	pointer-events: auto;
+	position: relative;
+	top: 0 !important;
+	transform: none !important;
+	background-color: rgba(0, 0, 0, 0.4) !important;
+	color: white;
+	border: none;
+	width: 2.5rem;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: background-color 0.2s ease;
+	font-size: 1.5rem;
+}
+
+.guitars-section.orientation-slideshow .splide__arrow:hover {
+	background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.guitars-section.orientation-slideshow .splide__arrow:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
 
 /* Horizontal rotation */
 .guitars-section.orientation-horizontal .guitar-section img {
@@ -91,7 +143,6 @@
   transform: rotate(90deg);
 }
 
-/* type-hidden */
 .guitar-section.type-hidden { display: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -102,17 +153,10 @@
 }
 
 .guitars-section.orientation-horizontal .guitar-section {
-  width: 400px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @apply grid grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-[5px] w-[400px] h-[220px] items-center justify-center;
 }
 .guitars-section.orientation-horizontal .guitar-section img {
-  width: 400px;
-  height: 220px;
-  object-fit: cover;
-  transform: none; /* αν δεν θες περιστροφή */
+   @apply w-[400px] h-[220px] object-cover transform-none;
 }
 
 [data-theme="dark"] body {

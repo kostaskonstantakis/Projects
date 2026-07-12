@@ -6,6 +6,7 @@ base theme: starterkit_theme
 libraries:
   - guitars_theme/global-styling
   - guitars_theme/guitars-scripts
+  - guitars_theme/guitars-audio
 regions:
   header: Header
   content: Content

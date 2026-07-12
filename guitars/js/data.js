@@ -45,5 +45,10 @@ window.guitarData = [
         type: "electric signature",
         img: "css/media/jackson-misha-mansoor-juggernaut.png",
         index: 8
+    },
+    {
+        type: "ukulele",
+        img: "css/media/mahalo_ukulele_purple.png",
+        index: 9
     }
 ];

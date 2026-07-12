@@ -7,3 +7,4 @@ dependencies:
   - drupal:node
   - drupal:image
   - drupal:options
+  - drupal:views

@@ -21,7 +21,7 @@
 
 <body>
 	<a href="#main-content" class="skip-link">Skip to main content</a>
-	<button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+	<button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode" aria-pressed="false">🌙</button>
 
 	<header>
 		<h1><img class="favicon-rotating" src="css/media/favicon.png" alt="favicon" aria-hidden="true"> <span id="page-header-text">Enjoy Kostas' Guitar Collection!</span> <img class="favicon-rotating" src="css/media/favicon.png" alt="favicon" aria-hidden="true"></h1>
@@ -82,11 +82,11 @@
 		</section>
 
 		<!-- Lightbox -->
-		<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image" hidden>
+		<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image" aria-describedby="lightbox-caption" hidden>
 			<button type="button" class="lightbox__close" aria-label="Close">&times;</button>
 			<div class="lightbox__inner">
 				<img class="lightbox__img" src="" alt="">
-				<p class="lightbox__caption"></p>
+				<p id="lightbox-caption" class="lightbox__caption"></p>
 			</div>
 		</div>
 
@@ -109,6 +109,7 @@
     <script src="js/translations.js"></script>
     <script src="js/index.js"></script>
     <script src="js/features.js"></script>
+    <script src="js/audio.js"></script>
 	
 </body>
 </html>

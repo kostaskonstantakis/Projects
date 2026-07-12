@@ -44,8 +44,8 @@ window.translations = {
                 alt: "Kirk Hammett Washburn Student Series. My first guitar ever, back in 2009!"
             },
             {
-                description: "Cort B4 Element Bass. I bought it in 2022 from Kagmakis Guitars in Erxarheia. It's the single bass I currently have.",
-                alt: "Cort B4 Element Bass. I bought this in 2022 from Kagmakis Guitars in Erxarheia. It's the single bass I currently have."
+                description: "Cort B4 Element Bass. I bought it in 2022 from Kagmakis Guitars in Erxarheia.",
+                alt: "Cort B4 Element Bass. I bought this in 2022 from Kagmakis Guitars in Erxarheia."
             },
             {
                 description: "Fender Squier Telemaster. I got this from Stolas Store in Kallithea, in 2022.",
@@ -56,16 +56,20 @@ window.translations = {
                 alt: "Fender Squier Stagemaster. Another happy purchase from Kagmakis Guitars, also in 2022."
             },
             {
-                description: "Yamaha APX 600 Natural acoustic. I ordered this one along with the Misha Mansoor signature guitar from Thomann, in 2021. It's up for grabs. Anyone interested drop me a message.",
-                alt: "Yamaha APX 600 Natural acoustic. I ordered this one along with the Misha Mansoor signature guitar from Thomann, in 2021. It's up for grabs. Anyone interested drop me a message."
+                description: "Yamaha APX 600 Natural acoustic. I ordered this one along with the Misha Mansoor signature guitar from Thomann, in 2021.",
+                alt: "Yamaha APX 600 Natural acoustic. I ordered this one along with the Misha Mansoor signature guitar from Thomann, in 2021."
             },
             {
-                description: "Harley Benton JA123 baritone. I once again purchased this one from Thomann, during the 2025 Christmas holidays. It arrived in early 2026. It's the newest addition to the family.",
-                alt: "Harley Benton JA123 baritone. I once again purchased this one from Thomann, during the 2025 Christmas holidays. It arrived in early 2026. It's the newest addition to the family."
+                description: "Harley Benton JA123 baritone. I once again purchased this one from Thomann, during the 2025 Christmas holidays.",
+                alt: "Harley Benton JA123 baritone. I once again purchased this one from Thomann, during the 2025 Christmas holidays."
             },
             {
-                description: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. It's the only signature guitar I own, since 2021. I love Misha's bands, Periphery & Haunted Shores!",
-                alt: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. Yet another signature guitar I own, since 2021."
+                description: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB, since 2021. I love Misha's bands, Periphery & Haunted Shores!",
+                alt: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB, since 2021. I love Misha's bands, Periphery & Haunted Shores!"
+            },
+            {
+                description: "Mahalo Purple Ukulele. A fun addition to my collection for relaxing and playing some different music styles!",
+                alt: "Mahalo Purple Ukulele. A fun addition to my collection for relaxing and playing."
             }
         ]
     },
@@ -135,6 +139,10 @@ window.translations = {
             {
                 description: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. Είναι η μόνη signature κιθάρα που έχω, από το 2021. Λατρεύω τα συγκροτήματα του Misha, Periphery & Haunted Shores!",
                 alt: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. Και άλλη signature κιθάρα που έχω, από το 2021."
+            },
+            {
+                description: "Mahalo Purple Ukulele. Μια διασκεδαστική προσθήκη στη συλλογή μου για χαλάρωση και παιχνίδι διαφόρων στυλ μουσικής!",
+                alt: "Mahalo Purple Ukulele. Μια διασκεδαστική προσθήκη στη συλλογή μου για χαλάρωση."
             }
         ]
     },
@@ -202,6 +210,10 @@ window.translations = {
             {
                 description: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. Это единственная сигнатурная гитара, которую я имею, с 2021 года. Я люблю группы Misha, Periphery & Haunted Shores!",
                 alt: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. Ещё одна сигнатурная гитара, которую я имею, с 2021 года."
+            },
+            {
+                description: "Mahalo Purple Ukulele. Весёлое дополнение к моей коллекции для расслабления и игры различных музыкальных стилей!",
+                alt: "Mahalo Purple Ukulele. Весёлое дополнение к моей коллекции для расслабления."
             }
         ]
     }

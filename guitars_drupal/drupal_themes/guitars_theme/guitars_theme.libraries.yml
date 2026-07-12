@@ -8,3 +8,7 @@ guitars-scripts:
   dependencies:
     - core/drupal
     - core/jquery
+guitars-audio:
+  js:
+    js/audio.js: {}
+

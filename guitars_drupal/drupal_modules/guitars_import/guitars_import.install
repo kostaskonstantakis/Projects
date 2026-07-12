@@ -38,12 +38,13 @@ function guitars_import_install() {
       'formatter' => 'list_default',
       'storage_settings' => [
         'allowed_values' => [
-          'electric' => 'Electric',
+          'electric' => 'Electric Guitar',
+          'electric 7string' => 'Electric 7 String',
+          'electric signature' => 'Electric Signature',
           'bass' => 'Bass',
           'acoustic' => 'Acoustic',
-          'signature' => 'Signature',
-          '7-string' => '7-string',
-          'baritone' => 'Baritone',
+          'electric baritone' => 'Electric Baritone',
+          'ukulele' => 'Ukulele',
         ],
       ],
     ],

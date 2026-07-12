@@ -1,56 +1,62 @@
 [
   {
-    "title": "Schecter Blackjack ATX C-1",
-    "description": "Schecter Blackjack ATX C-1",
+    "title": "Schecter Blackjack ATX C1",
+    "description": "Schecter Blackjack ATX C1. My fave guitar of all time! I got this second hand in 2016.",
     "img": "css/media/schecter-blackjack.png",
     "type": "electric"
   },
   {
-    "title": "Solar A2-7 Red Matte",
-    "description": "Solar A2-7 Red Matte",
+    "title": "Solar A2.7 TBR Trans Blood Red Matte",
+    "description": "Solar A2.7 TBR Trans Blood Red Matte. I got this one also second hand in 2019.",
     "img": "css/media/solar-a2-7-red-matte.png",
-    "type": "electric"
+    "type": "electric 7string"
   },
   {
-    "title": "Kirk Hammett Washburn student series starter pack",
-    "description": "Kirk Hammett Washburn student series starter pack",
+    "title": "Kirk Hammett Washburn Student Series",
+    "description": "Kirk Hammett Washburn Student Series. My first guitar ever, back in 2009! The literal OG!",
     "img": "css/media/kirk-hammett-washburn.png",
     "type": "electric signature"
   },
   {
-    "title": "Cort B4 Element bass",
-    "description": "Cort B4 Element bass",
+    "title": "Cort B4 Element Bass",
+    "description": "Cort B4 Element Bass. I bought it in 2022 from Kagmakis Guitars in Erxarheia.",
     "img": "css/media/cort-b4-element.png",
     "type": "bass"
   },
   {
-    "title": "Fender Squier Telecaster",
-    "description": "Fender Squier Telecaster",
+    "title": "Fender Squier Telemaster",
+    "description": "Fender Squier Telemaster. I got this from Stolas Store in Kallithea, in 2022.",
     "img": "css/media/squier-telecaster.png",
     "type": "electric"
   },
   {
     "title": "Fender Squier Stagemaster",
-    "description": "Fender Squier Stagemaster",
-    "img": "./css/media/squier-stagemaster.png",
+    "description": "Fender Squier Stagemaster. Another happy purchase from Kagmakis Guitars, also in 2022.",
+    "img": "css/media/squier-stagemaster.png",
     "type": "electric"
   },
   {
-    "title": "Yamaha F310 Acoustic",
-    "description": "Yamaha F310 Acoustic",
-    "img": "/css/media/yamaha-acoustic.png",
+    "title": "Yamaha APX 600 Natural acoustic",
+    "description": "Yamaha APX 600 Natural acoustic. I ordered this one along with the Misha Mansoor signature guitar from Thomann, in 2021.",
+    "img": "css/media/yamaha-acoustic.png",
     "type": "acoustic"
   },
   {
-    "title": "Harley Benton JA123 Baritone",
-    "description": "Harley Benton JA123 Baritone",
+    "title": "Harley Benton JA123 baritone",
+    "description": "Harley Benton JA123 baritone. I once again purchased this one from Thomann, during the 2025 Christmas holidays.",
     "img": "css/media/harley-benton-ja123-baritone.png",
-    "type": "electric"
+    "type": "electric baritone"
   },
   {
-    "title": "Jackson Misha Mansoor Juggernaut",
-    "description": "Jackson Misha Mansoor Juggernaut",
+    "title": "Jackson Pro Misha Mansoor Juggernaut HT6QM CB",
+    "description": "Jackson Pro Misha Mansoor Juggernaut HT6QM CB, since 2021. I love Misha's bands, Periphery & Haunted Shores!",
     "img": "css/media/jackson-misha-mansoor-juggernaut.png",
     "type": "electric signature"
+  },
+  {
+    "title": "Mahalo Purple Ukulele",
+    "description": "Mahalo Purple Ukulele. A fun addition to my collection for relaxing and playing some different music styles!",
+    "img": "css/media/mahalo-ukulele-purple.jpg",
+    "type": "ukulele"
   }
 ]

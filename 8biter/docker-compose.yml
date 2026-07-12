@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "8000:8000"
+    volumes:
+      - ./backend/app:/app/app
+      - ./uploads:/app/uploads
+      - ./outputs:/app/outputs
+      - ./downloads:/app/downloads
+    environment:
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+    restart: unless-stopped

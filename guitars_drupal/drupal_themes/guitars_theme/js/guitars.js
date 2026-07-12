@@ -1,103 +1,201 @@
-(function (Drupal, drupalSettings) {
-  'use strict';
+(function() {
+	'use strict';
 
-  // ========== DARK MODE ==========
-  function initDarkMode() {
-    const darkModeKey = 'guitars-dark-mode';
-    const btn = document.getElementById('dark-mode-toggle');
-    function setDark(isDark) {
-      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      if (btn) btn.textContent = isDark ? '🌙' : '☀️';
-      try { localStorage.setItem(darkModeKey, isDark ? 'true' : 'false'); } catch (e) { }
-    }
-    let isDark = false;
-    try {
-      const saved = localStorage.getItem(darkModeKey);
-      if (saved !== null) {
-        isDark = saved === 'true';
-      }
-    } catch (e) { }
-    setDark(isDark);
-    if (btn) {
-      // Avoid attaching multiple times
-      if (!btn.hasAttribute('data-dark-mode-initialized')) {
-        btn.setAttribute('data-dark-mode-initialized', 'true');
-        btn.addEventListener('click', function () {
-          isDark = !isDark;
-          setDark(isDark);
-        });
-      }
-    }
-  }
+	// ========== DARK MODE ==========
+	function initDarkMode() {
+		const darkModeKey = 'guitars-dark-mode';
+		const btn = document.getElementById('dark-mode-toggle');
+		
+		function setDark(isDark) {
+			document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+			if (btn) {
+				btn.textContent = isDark ? '☀️' : '🌙';
+				btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+				btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+			}
+			try { localStorage.setItem(darkModeKey, isDark ? 'true' : 'false'); } catch (e) { }
+		}
+		
+		let isDark = false;
+		try {
+			const saved = localStorage.getItem(darkModeKey);
+			if (saved !== null) {
+				isDark = saved === 'true';
+			}
+		} catch (e) { }
+		
+		setDark(isDark);
+		
+		if (btn) {
+			btn.addEventListener('click', function() {
+				isDark = !isDark;
+				setDark(isDark);
+			});
+		}
+	}
 
-  // ========== ORIENTATION (vertical / horizontal / slideshow) ==========
-  function initOrientation() {
-    var filter = document.getElementById('orientation-filter');
-    var section = document.getElementById('guitars-section');
-    var STORAGE_KEY = 'guitars-orientation';
-    if (!filter || !section) return;
-    function applyOrientation() {
-      var value = filter.value || 'vertical';
-      // καθαρίζουμε προηγούμενες κλάσεις
-      section.classList.remove('orientation-vertical', 'orientation-horizontal', 'orientation-slideshow');
-      section.classList.add('orientation-' + value);
-      try {
-        localStorage.setItem(STORAGE_KEY, value);
-      } catch (e) { }
-    }
-    // restore από localStorage
-    try {
-      var saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === 'horizontal' || saved === 'vertical' || saved === 'slideshow') {
-        filter.value = saved;
-      }
-    } catch (e) { }
-    applyOrientation();
-    filter.addEventListener('change', applyOrientation);
-  }
+	// ========== ORIENTATION ==========
+	function initOrientation() {
+		const filter = document.getElementById('orientation-filter');
+		const section = document.getElementById('guitars-section');
+		const STORAGE_KEY = 'guitars-orientation';
+		
+		if (!filter || !section) return;
+		
+		function applyOrientation() {
+			const value = filter.value || 'vertical';
+			section.classList.remove('orientation-vertical', 'orientation-horizontal', 'orientation-slideshow');
+			section.classList.add('orientation-' + value);
+			try {
+				localStorage.setItem(STORAGE_KEY, value);
+			} catch (e) { }
+		}
+		
+		try {
+			const saved = localStorage.getItem(STORAGE_KEY);
+			if (saved === 'horizontal' || saved === 'vertical' || saved === 'slideshow') {
+				filter.value = saved;
+			}
+		} catch (e) { }
+		
+		applyOrientation();
+		filter.addEventListener('change', applyOrientation);
+	}
 
-  // ========== TYPE FILTER (All / Electric / Bass / Acoustic / Signature / Baritone / 7string) ==========
-  function initTypeFilter() {
-    var filter = document.getElementById('type-filter');
-    var section = document.getElementById('guitars-section');
-    if (!filter || !section) return;
-    function applyTypeFilter() {
-      var value = filter.value || 'all';
-      var cards = section.querySelectorAll('.guitar-section[data-type]');
-      cards.forEach(function (el) {
-        var typeAttr = el.getAttribute('data-type') || '';
-        var types = typeAttr.split(/\s+/).filter(Boolean);
-        var match = (value === 'all') || (types.indexOf(value) !== -1);
-        el.classList.toggle('type-hidden', !match);
-      });
-    }
-    filter.addEventListener('change', applyTypeFilter);
-    applyTypeFilter();
-  }
+	// ========== TYPE FILTER ==========
+	function initTypeFilter() {
+		const filter = document.getElementById('type-filter');
+		const section = document.getElementById('guitars-section');
+		
+		if (!filter || !section) return;
+		
+		function applyTypeFilter() {
+			const value = filter.value || 'all';
+			const cards = section.querySelectorAll('.guitar-section[data-type]');
+			
+			cards.forEach(function(el) {
+				const typeAttr = el.getAttribute('data-type') || '';
+				const types = typeAttr.split(/\s+/).filter(Boolean);
+				const match = (value === 'all') || (types.indexOf(value) !== -1);
+				el.classList.toggle('type-hidden', !match);
+			});
+		}
+		
+		filter.addEventListener('change', applyTypeFilter);
+		applyTypeFilter();
+	}
 
-  // ========== LIGHTBOX ==========
-  function initLightbox() {
-    var lightbox = document.getElementById('lightbox');
-    if (!lightbox) return;
-    var lightboxImg = lightbox.querySelector('.lightbox__img');
-    var lightboxCaption = lightbox.querySelector('.lightbox__caption');
-    var closeBtn = lightbox.querySelector('.lightbox__close');
-    var gallery = document.getElementById('guitars-section');
-    if (!lightboxImg || !gallery) return;
+	// ========== LIGHTBOX ==========
+	function initLightbox() {
+		const lightbox = document.getElementById('lightbox');
+		if (!lightbox) return;
+		
+		const lightboxImg = lightbox.querySelector('.lightbox__img');
+		const lightboxCaption = lightbox.querySelector('.lightbox__caption');
+		const closeBtn = lightbox.querySelector('.lightbox__close');
+		const gallery = document.getElementById('guitars-section');
+		let previousFocus = null;
+		let focusableElements = [];
+		
+		if (!lightboxImg || !gallery) return;
 
-    if (lightbox.hasAttribute('data-lightbox-initialized')) {
-      return;
-    }
-    lightbox.setAttribute('data-lightbox-initialized', 'true');
+		function updateFocusableElements() {
+			focusableElements = Array.prototype.slice.call(lightbox.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+				.filter(function (el) { return !el.disabled && el.offsetParent !== null; });
+		}
 
-    function openLightbox(src, caption) {
-      lightboxImg.src = src;
-      lightboxImg.alt = caption || '';
-      if (lightboxCaption) {
-        lightboxCaption.textContent = caption || '';
-      }
-      // Αν το gallery είναι οριζόντιο, περιστρέφουμε και το lightbox (προαιρετικό)
-      if (gallery.classList.contains('orientation-horizontal')) {
+		function trapFocus(event) {
+			if (event.key !== 'Tab') return;
+			updateFocusableElements();
+			if (!focusableElements.length) return;
+			const first = focusableElements[0];
+			const last = focusableElements[focusableElements.length - 1];
+			if (event.shiftKey) {
+				if (document.activeElement === first || document.activeElement === lightbox) {
+					event.preventDefault();
+					last.focus();
+				}
+			} else {
+				if (document.activeElement === last) {
+					event.preventDefault();
+					first.focus();
+				}
+			}
+		}
+
+		function openLightbox(src, caption) {
+			previousFocus = document.activeElement;
+			lightboxImg.src = src;
+			lightboxImg.alt = caption || '';
+			if (lightboxCaption) {
+				lightboxCaption.textContent = caption || '';
+			}
+			
+			if (gallery.classList.contains('orientation-horizontal')) {
+				lightbox.classList.add('orientation-horizontal');
+			} else {
+				lightbox.classList.remove('orientation-horizontal');
+			}
+			
+			lightbox.hidden = false;
+			updateFocusableElements();
+			if (closeBtn) {
+				closeBtn.focus();
+			} else if (focusableElements.length) {
+				focusableElements[0].focus();
+			}
+			document.addEventListener('keydown', trapFocus, true);
+			document.body.style.overflow = 'hidden';
+		}
+
+		function closeLightbox() {
+			lightbox.hidden = true;
+			document.body.style.overflow = '';
+			document.removeEventListener('keydown', trapFocus, true);
+			if (previousFocus && previousFocus.focus) {
+				previousFocus.focus();
+			}
+		}
+
+		const guitarSections = gallery.querySelectorAll('.guitar-section');
+		guitarSections.forEach(function(section) {
+			section.addEventListener('click', function(e) {
+				if (e.target.tagName === 'IMG' || e.target.closest('.guitar-section__img-wrap')) {
+					const img = section.querySelector('img');
+					const caption = section.getAttribute('data-description') || '';
+					if (img) {
+						openLightbox(img.src, caption);
+					}
+				}
+			});
+		});
+
+		document.addEventListener('click', function(e) {
+			if (!e.target.closest('.guitar-section') && !e.target.closest('.lightbox__inner')) {
+				closeLightbox();
+			}
+		});
+
+		if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+		
+		lightbox.addEventListener('click', function(e) {
+			if (e.target === lightbox) closeLightbox();
+		});
+		
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
+		});
+	}
+
+	// ========== INITIALIZATION ==========
+	document.addEventListener('DOMContentLoaded', function() {
+		initDarkMode();
+		initOrientation();
+		initTypeFilter();
+		initLightbox();
+	});
+
+})();
         lightbox.classList.add('orientation-horizontal');
       } else {
         lightbox.classList.remove('orientation-horizontal');

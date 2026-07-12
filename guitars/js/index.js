@@ -25,19 +25,6 @@ var applyTypeFilter = function() {};
                 wrap.className = 'guitar-section__img-wrap';
                 wrap.dataset.description = trans.description;
 
-                var favoriteBtn = document.createElement('button');
-                favoriteBtn.className = 'guitar-favorite-btn';
-                favoriteBtn.dataset.guitarIndex = g.index;
-                favoriteBtn.textContent = window.isFavorite && window.isFavorite(g.index) ? '❤️' : '🤍';
-                favoriteBtn.setAttribute('aria-label', 'Toggle favorite');
-                favoriteBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    if (window.toggleFavorite) {
-                        window.toggleFavorite(g.index);
-                    }
-                });
-                wrap.appendChild(favoriteBtn);
-
                 var img = document.createElement('img');
                 img.src = g.img;
                 img.alt = trans.alt;
@@ -368,7 +355,34 @@ function updateYearAndAge() {
 	var closeBtn = lightbox && lightbox.querySelector('.lightbox__close');
 	if (!lightbox || !lightboxImg) return;
 
+	var previousFocus = null;
+	var focusableElements = [];
+	function updateFocusableElements() {
+		focusableElements = Array.prototype.slice.call(lightbox.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+			.filter(function (el) { return !el.disabled && el.offsetParent !== null; });
+	}
+
+	function trapFocus(event) {
+		if (event.key !== 'Tab') return;
+		updateFocusableElements();
+		if (!focusableElements.length) return;
+		var first = focusableElements[0];
+		var last = focusableElements[focusableElements.length - 1];
+		if (event.shiftKey) {
+			if (document.activeElement === first || document.activeElement === lightbox) {
+				event.preventDefault();
+				last.focus();
+			}
+		} else {
+			if (document.activeElement === last) {
+				event.preventDefault();
+				first.focus();
+			}
+		}
+	}
+
 	function openLightbox(src, caption) {
+		previousFocus = document.activeElement;
 		lightboxImg.src = src;
 		lightboxImg.alt = caption || '';
 		lightboxCaption.textContent = caption || '';
@@ -382,7 +396,13 @@ function updateYearAndAge() {
 		}
 		
 		lightbox.hidden = false;
-		if (closeBtn) closeBtn.focus();
+		updateFocusableElements();
+		if (closeBtn) {
+			closeBtn.focus();
+		} else if (focusableElements.length) {
+			focusableElements[0].focus();
+		}
+		document.addEventListener('keydown', trapFocus, true);
 		document.body.style.overflow = 'hidden';
 	}
 
@@ -391,6 +411,10 @@ function updateYearAndAge() {
 		lightboxImg.removeAttribute('src');
 		lightbox.classList.remove('orientation-horizontal');
 		document.body.style.overflow = '';
+		document.removeEventListener('keydown', trapFocus, true);
+		if (previousFocus && previousFocus.focus) {
+			previousFocus.focus();
+		}
 	}
 
 	// Use event delegation
