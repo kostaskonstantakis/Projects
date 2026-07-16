@@ -34,7 +34,7 @@ var applyTypeFilter = function() {};
                 img.width = 400;
                 img.height = 533;
                 img.dataset.guitarIndex = g.index;
-				img.className = 'block w-full h-full object-cover';
+				img.className = 'block w-full h-full object-contain';
 
                 wrap.appendChild(img);
                 div.appendChild(wrap);

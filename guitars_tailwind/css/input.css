@@ -156,7 +156,7 @@
   @apply grid grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-[5px] w-[400px] h-[220px] items-center justify-center;
 }
 .guitars-section.orientation-horizontal .guitar-section img {
-   @apply w-[400px] h-[220px] object-cover transform-none;
+   @apply w-[400px] h-[220px] object-contain transform-none;
 }
 
 [data-theme="dark"] body {

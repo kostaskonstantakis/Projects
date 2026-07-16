@@ -652,7 +652,7 @@ footer a:focus-visible {
 	display: block;
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 /* Overlay και κείμενο στο hover / focus – μέσα στο wrapper της εικόνας */
