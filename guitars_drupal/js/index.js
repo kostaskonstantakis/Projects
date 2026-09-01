@@ -145,8 +145,6 @@ var applyTypeFilter = function() {};
     }
 })();
 
-var currentYear = new Date().getFullYear();
-
 function getAge(birthDate) {
 	var today = new Date();
 	var birth = new Date(birthDate);
@@ -159,10 +157,15 @@ function getAge(birthDate) {
 }
 
 function updateYearAndAge() {
-	document.getElementById('year').textContent = currentYear;
+	var yearEl = document.getElementById('year');
+	if (yearEl) {
+		yearEl.textContent = new Date().getFullYear();
+	}
 	var ageEl = document.getElementById('age');
 	if (ageEl) ageEl.textContent = getAge('1995-02-26');
 }
+
+updateYearAndAge();
 
 /* Orientation: εφαρμογή + αποθήκευση στο localStorage */
 (function () {
