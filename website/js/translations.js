@@ -1,11 +1,11 @@
-// Translations for the guitar collection website
+// Translations for the portfolio website
 window.translations = {
     en: {
-        page_title: "Kostas' Guitars – My guitar collection",
-        header_text: "Enjoy Kostas' Guitar Collection!",
+        page_title: "Kostas Konstantakis – Portfolio",
+        header_text: "Welcome to Kostas' Portfolio!",
         footer_text: "Kostas Konstantakis &#169; <span id=\"year\"></span>",
-        synopsis: "Hello, everyone! My name is Kostas.<br>Welcome to a demo webpage about my guitar collection.<br>I have been playing guitar for over 15 years now, since September 2009.<br>Essentially, more than half my life, given that I'm <span id=\"age\" aria-live=\"polite\"></span> years old.<br>What about you? Do you play guitar, too?<br>Come on, let's jam!",
-        orientation_label: "Guitar layout orientation:",
+        synopsis: "Hello, everyone! My name is Kostas.<br>Welcome to my personal portfolio website.<br>I enjoy building modern digital experiences and sharing my work, projects, and interests.<br>Feel free to explore what I have been up to lately.<br>You can also connect with me through the links below.",
+        orientation_label: "Layout orientation:",
         orientation_options: {
             vertical: "Vertical",
             horizontal: "Horizontal",
@@ -14,14 +14,14 @@ window.translations = {
         type_label: "Type:",
         type_options: {
             all: "All",
-            electric: "Electric Guitar",
+            electric: "Electric",
             bass: "Bass",
             acoustic: "Acoustic",
             signature: "Signature",
             baritone: "Baritone",
             "7string": "7 string"
         },
-        search_placeholder: "Search guitars...",
+        search_placeholder: "Search projects...",
         sort_label: "Sort:",
         sort_options: {
             default: "Default",
@@ -29,56 +29,33 @@ window.translations = {
             type: "By Type",
             name: "A-Z"
         },
-        disclaimer: "Disclaimer:<br>That's a mere, simple demo website, made just for fun! It's not intended to be used as a real, commercial website.<br>I'm in no way, shape or form affiliated with any of the brands displayed or mentioned in this website.",
-        guitars: [
-            {
-                description: "Schecter Blackjack ATX C1. My fave guitar of all time! I got this second hand in 2016.",
-                alt: "Schecter Blackjack ATX C1 My fave guitar! I got this second hand in 2016."
-            },
-            {
-                description: "Solar A2.7 TBR Trans Blood Red Matte. I got this one also second hand in 2019.",
-                alt: "Solar A2.7 TBR Trans Blood Red Matte. I got this one also second hand in 2019."
-            },
-            {
-                description: "Kirk Hammett Washburn Student Series. My first guitar ever, back in 2009! The literal OG!",
-                alt: "Kirk Hammett Washburn Student Series. My first guitar ever, back in 2009!"
-            },
-            {
-                description: "Cort B4 Element Bass. I bought it in 2022 from Kagmakis Guitars in Erxarheia.",
-                alt: "Cort B4 Element Bass. I bought this in 2022 from Kagmakis Guitars in Erxarheia."
-            },
-            {
-                description: "Fender Squier Telemaster. I got this from Stolas Store in Kallithea, in 2022.",
-                alt: "Fender Squier Telemaster. I got this from Stolas Store in Kallithea, in 2022."
-            },
-            {
-                description: "Fender Squier Stagemaster. Another happy purchase from Kagmakis Guitars, also in 2022.",
-                alt: "Fender Squier Stagemaster. Another happy purchase from Kagmakis Guitars, also in 2022."
-            },
-            {
-                description: "Yamaha APX 600 Natural acoustic. I ordered this one along with the Misha Mansoor signature guitar from Thomann, in 2021.",
-                alt: "Yamaha APX 600 Natural acoustic. I ordered this one along with the Misha Mansoor signature guitar from Thomann, in 2021."
-            },
-            {
-                description: "Harley Benton JA123 baritone. I once again purchased this one from Thomann, during the 2025 Christmas holidays.",
-                alt: "Harley Benton JA123 baritone. I once again purchased this one from Thomann, during the 2025 Christmas holidays."
-            },
-            {
-                description: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB, since 2021. I love Misha's bands, Periphery & Haunted Shores!",
-                alt: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB, since 2021. I love Misha's bands, Periphery & Haunted Shores!"
-            },
-            {
-                description: "Mahalo Purple Ukulele. A fun addition to my collection for relaxing and playing some different music styles!",
-                alt: "Mahalo Purple Ukulele. A fun addition to my collection for relaxing and playing."
-            }
+        disclaimer: "A simple personal portfolio website built to showcase my experience, projects, and interests.",
+        experience_title: "Experience",
+        contact_title: "Contact",
+        interests_title: "Interests",
+        experience_people: [
+            { title: "OnlyNet", summary: "Web Developer", when: "08/07/2024 - Present" },
+            { title: "Greek Army", summary: "Software Engineer", when: "17/03/2023 - 17/03/2024" },
+            { title: "Alpha Bank", summary: "Application Developer", when: "06/06/2022 - 09/12/2022" },
+            { title: "AboutNet", summary: "Web Developer Intern", when: "13/01/2021 - 12/04/2021" }
+        ],
+        contact_people: [
+            { title: "Email", summary: "kostaskonstantakis6@gmail.com" },
+            { title: "LinkedIn", summary: "Kostas Konstantakis" },
+            { title: "GitHub", summary: "kostaskonstantakis" }
+        ],
+        interests_people: [
+            { title: "Web Development", summary: "Building modern, reliable, and user-friendly digital experiences." },
+            { title: "Music", summary: "Listening to, discovering, and enjoying different styles and sounds." },
+            { title: "Travel", summary: "Exploring new places, meeting people, and discovering local culture." }
         ]
     },
     el: {
-        page_title: "Οι κιθάρες του Κώστα – Η συλλογή μου",
-        header_text: "Απολαύστε τη συλλογή κιθαρών του Κώστα!",
+        page_title: "Κώστας Κωνσταντάκης – Portfolio",
+        header_text: "Καλώς ήρθατε στο portfolio του Κώστα!",
         footer_text: "Κώστας Κωνσταντάκης &#169; <span id=\"year\"></span>",
-        synopsis: "Γεια σας σε όλους! Με λένε Κώστα.<br>Καλώς ήρθατε σε μια demo ιστοσελίδα για τη συλλογή κιθαρών μου.<br>Παίζω κιθάρα για πάνω από 15 χρόνια τώρα, από τον Σεπτέμβριο του 2009.<br>Ουσιαστικά, περισσότερο από το μισό της ζωής μου, δεδομένου ότι είμαι <span id=\"age\" aria-live=\"polite\"></span> ετών.<br>Και εσείς; Παίζετε κιθάρα κι εσείς;<br>Έλα! Ας παίξουμε μαζί!",
-        orientation_label: "Προσανατολισμός διάταξης κιθαρών:",
+        synopsis: "Γεια σας! Με λένε Κώστα.<br>Καλώς ήρθατε στο προσωπικό μου portfolio.<br>Μου αρέσει να δημιουργώ σύγχρονες ψηφιακές εμπειρίες και να μοιράζομαι τις δουλειές, τα projects και τα ενδιαφέροντά μου.<br>Νιώστε ελεύθεροι να εξερευνήσετε τι έχω κάνει πρόσφατα.<br>Μπορείτε επίσης να επικοινωνήσετε μαζί μου μέσω των παρακάτω συνδέσμων.",
+        orientation_label: "Προσανατολισμός διάταξης:",
         orientation_options: {
             vertical: "Κατακόρυφος",
             horizontal: "Οριζόντιος",
@@ -87,14 +64,14 @@ window.translations = {
         type_label: "Τύπος:",
         type_options: {
             all: "Όλα",
-            electric: "Ηλεκτρική Κιθάρα",
+            electric: "Ηλεκτρικό",
             bass: "Μπάσο",
-            acoustic: "Ακουστική",
+            acoustic: "Ακουστικό",
             signature: "Signature",
             baritone: "Μπαριτόν",
             "7string": "7 χορδών"
         },
-        search_placeholder: "Αναζήτηση κιθαρών...",
+        search_placeholder: "Αναζήτηση projects...",
         sort_label: "Ταξινόμηση:",
         sort_options: {
             default: "Προεπιλογή",
@@ -102,56 +79,33 @@ window.translations = {
             type: "Κατά Τύπο",
             name: "Α-Ω"
         },
-        disclaimer: "Αποποίηση ευθύνης:<br>Αυτή είναι απλώς μια απλή demo ιστοσελίδα, φτιαγμένη για διασκέδαση! Δεν προορίζεται να χρησιμοποιηθεί ως πραγματική, εμπορική ιστοσελίδα.<br>Δεν είμαι με κανέναν τρόπο συνδεδεμένος με καμία από τις μάρκες που εμφανίζονται ή αναφέρονται σε αυτή την ιστοσελίδα.",
-        guitars: [
-            {
-                description: "Schecter Blackjack ATX C1. Η αγαπημένη μου κιθάρα όλων των εποχών! Την πήρα μεταχειρισμένη το 2016.",
-                alt: "Schecter Blackjack ATX C1 Η αγαπημένη μου κιθάρα! Την πήρα μεταχειρισμένη το 2016."
-            },
-            {
-                description: "Solar A2.7 TBR Trans Blood Red Matte. Αυτή την πήρα επίσης μεταχειρισμένη το 2019.",
-                alt: "Solar A2.7 TBR Trans Blood Red Matte. Αυτή την πήρα επίσης μεταχειρισμένη το 2019."
-            },
-            {
-                description: "Kirk Hammett Washburn Student Series. Η πρώτη μου κιθάρα ποτέ, το 2009! Το κυριολεκτικό OG!",
-                alt: "Kirk Hammett Washburn Student Series. Η πρώτη μου κιθάρα ποτέ, το 2009!"
-            },
-            {
-                description: "Cort B4 Element Bass. Την αγόρασα το 2022 από τα Kagmakis Guitars στην Ερξαρχεία. Είναι το μοναδικό μπάσο που έχω αυτή τη στιγμή.",
-                alt: "Cort B4 Element Bass. Την αγόρασα το 2022 από τα Kagmakis Guitars στην Ερξαρχεία. Είναι το μοναδικό μπάσο που έχω αυτή τη στιγμή."
-            },
-            {
-                description: "Fender Squier Telemaster. Την πήρα από το Stolas Store στην Καλλιθέα, το 2022.",
-                alt: "Fender Squier Telemaster. Την πήρα από το Stolas Store στην Καλλιθέα, το 2022."
-            },
-            {
-                description: "Fender Squier Stagemaster. Μια άλλη ευτυχισμένη αγορά από τα Kagmakis Guitars, επίσης το 2022.",
-                alt: "Fender Squier Stagemaster. Μια άλλη ευτυχισμένη αγορά από τα Kagmakis Guitars, επίσης το 2022."
-            },
-            {
-                description: "Yamaha APX 600 Natural ακουστική. Την παρήγγειλα μαζί με την signature κιθάρα του Misha Mansoor από το Thomann, το 2021. Είναι διαθέσιμη. Όποιος ενδιαφέρεται να μου στείλει μήνυμα.",
-                alt: "Yamaha APX 600 Natural ακουστική. Την παρήγγειλα μαζί με την signature κιθάρα του Misha Mansoor από το Thomann, το 2021. Είναι διαθέσιμη. Όποιος ενδιαφέρεται να μου στείλει μήνυμα."
-            },
-            {
-                description: "Harley Benton JA123 μπαριτόν. Την αγόρασα ξανά από το Thomann, κατά τις διακοπές των Χριστουγέννων του 2025. Έφτασε νωρίς το 2026. Είναι η πιο νέα προσθήκη στην οικογένεια.",
-                alt: "Harley Benton JA123 μπαριτόν. Την αγόρασα ξανά από το Thomann, κατά τις διακοπές των Χριστουγέννων του 2025. Έφτασε νωρίς το 2026. Είναι η πιο νέα προσθήκη στην οικογένεια."
-            },
-            {
-                description: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. Είναι η μόνη signature κιθάρα που έχω, από το 2021. Λατρεύω τα συγκροτήματα του Misha, Periphery & Haunted Shores!",
-                alt: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. Και άλλη signature κιθάρα που έχω, από το 2021."
-            },
-            {
-                description: "Mahalo Purple Ukulele. Μια διασκεδαστική προσθήκη στη συλλογή μου για χαλάρωση και παιχνίδι διαφόρων στυλ μουσικής!",
-                alt: "Mahalo Purple Ukulele. Μια διασκεδαστική προσθήκη στη συλλογή μου για χαλάρωση."
-            }
+        disclaimer: "Απλό προσωπικό portfolio που δείχνει την εμπειρία, τα projects και τα ενδιαφέροντά μου.",
+        experience_title: "Εμπειρία",
+        contact_title: "Επικοινωνία",
+        interests_title: "Ενδιαφέροντα",
+        experience_people: [
+            { title: "OnlyNet", summary: "Web Developer", when: "08/07/2024 - Παρόν" },
+            { title: "Greek Army", summary: "Software Engineer", when: "17/03/2023 - 17/03/2024" },
+            { title: "Alpha Bank", summary: "Application Developer", when: "06/06/2022 - 09/12/2022" },
+            { title: "AboutNet", summary: "Web Developer Intern", when: "13/01/2021 - 12/04/2021" }
+        ],
+        contact_people: [
+            { title: "Email", summary: "kostaskonstantakis6@gmail.com" },
+            { title: "LinkedIn", summary: "Kostas Konstantakis" },
+            { title: "GitHub", summary: "kostaskonstantakis" }
+        ],
+        interests_people: [
+            { title: "Web Development", summary: "Δημιουργία σύγχρονων, αξιόπιστων και φιλικών προς τον χρήστη ψηφιακών εμπειριών." },
+            { title: "Music", summary: "Ακρόαση, ανακάλυψη και απόλαυση διαφορετικών στυλ και ήχων." },
+            { title: "Travel", summary: "Εξερεύνηση νέων τόπων, γνωριμία με ανθρώπους και ανακάλυψη τοπικού πολιτισμού." }
         ]
     },
     ru: {
-        page_title: "Гитары Костаса – Моя коллекция",
-        header_text: "Наслаждайтесь коллекцией гитар Костаса!",
+        page_title: "Костас Константакис – Портфолио",
+        header_text: "Добро пожаловать в портфолио Костаса!",
         footer_text: "Костас Константакис &#169; <span id=\"year\"></span>",
-        synopsis: "Всем привет! Меня зовут Костас.<br>Добро пожаловать на демо-страницу о моей коллекции гитар.<br>Я играю на гитаре более 15 лет, с сентября 2009 года.<br>По сути, больше половины моей жизни, учитывая, что мне <span id=\"age\" aria-live=\"polite\"></span> лет.<br>А вы? Вы тоже играете на гитаре?<br>Давай! Давай поиграем вместе!",
-        orientation_label: "Ориентация макета гитар:",
+        synopsis: "Привет всем! Меня зовут Костас.<br>Добро пожаловать в моё личное портфолио.<br>Мне нравится создавать современные цифровые решения и делиться своими проектами, идеями и интересами.<br>Не стесняйтесь исследовать, чем я занимался недавно.<br>Также вы можете связаться со мной через ссылки ниже.",
+        orientation_label: "Ориентация макета:",
         orientation_options: {
             vertical: "Вертикальный",
             horizontal: "Горизонтальный",
@@ -160,61 +114,40 @@ window.translations = {
         type_label: "Тип:",
         type_options: {
             all: "Все",
-            electric: "Электрогитара",
+            electric: "Электро",
             bass: "Бас",
             acoustic: "Акустика",
             signature: "Сигнатура",
             baritone: "Баритона",
             "7string": "7 струн"
-        },        search_placeholder: "Поиск гитар...",
+        },
+        search_placeholder: "Поиск проектов...",
         sort_label: "Сортировка:",
         sort_options: {
             default: "По умолчанию",
             newest: "Новые первыми",
             type: "По типу",
             name: "А-Я"
-        },        disclaimer: "Отказ от ответственности:<br>Это всего лишь простая демо-сайт, сделанный просто для развлечения! Он не предназначен для использования в качестве реального коммерческого сайта.<br>Я никоим образом не связан с какими-либо брендами, отображаемыми или упомянутыми на этом сайте.",
-        guitars: [
-            {
-                description: "Schecter Blackjack ATX C1. Моя любимая гитара всех времен! Я купил её подержанной в 2016 году.",
-                alt: "Schecter Blackjack ATX C1 Моя любимая гитара! Я купил её подержанной в 2016 году."
-            },
-            {
-                description: "Solar A2.7 TBR Trans Blood Red Matte. Эту я тоже купил подержанной в 2019 году.",
-                alt: "Solar A2.7 TBR Trans Blood Red Matte. Эту я тоже купил подержанной в 2019 году."
-            },
-            {
-                description: "Kirk Hammett Washburn Student Series. Моя первая гитара вообще, в 2009 году! Буквально OG!",
-                alt: "Kirk Hammett Washburn Student Series. Моя первая гитара вообще, в 2009 году!"
-            },
-            {
-                description: "Cort B4 Element Bass. Я купил его в 2022 году в Kagmakis Guitars в Эрхарее. Это единственный бас, который у меня сейчас есть.",
-                alt: "Cort B4 Element Bass. Я купил его в 2022 году в Kagmakis Guitars в Эрхарее. Это единственный бас, который у меня сейчас есть."
-            },
-            {
-                description: "Fender Squier Telemaster. Я получил это из магазина Stolas в Каллифее, в 2022 году.",
-                alt: "Fender Squier Telemaster. Я получил это из магазина Stolas в Каллифее, в 2022 году."
-            },
-            {
-                description: "Fender Squier Stagemaster. Ещё одна счастливая покупка из Kagmakis Guitars, тоже в 2022 году.",
-                alt: "Fender Squier Stagemaster. Ещё одна счастливая покупка из Kagmakis Guitars, тоже в 2022 году."
-            },
-            {
-                description: "Yamaha APX 600 Natural акустика. Я заказал эту вместе с сигнатурной гитарой Misha Mansoor из Thomann, в 2021 году. Она доступна. Кто заинтересован, напишите мне сообщение.",
-                alt: "Yamaha APX 600 Natural акустика. Я заказал эту вместе с сигнатурной гитарой Misha Mansoor из Thomann, в 2021 году. Она доступна. Кто заинтересован, напишите мне сообщение."
-            },
-            {
-                description: "Harley Benton JA123 баритон. Я снова купил эту из Thomann во время рождественских каникул 2025 года. Она прибыла в начале 2026 года. Это новейшее дополнение к семье.",
-                alt: "Harley Benton JA123 баритон. Я снова купил эту из Thomann во время рождественских каникул 2025 года. Она прибыла в начале 2026 года. Это новейшее дополнение к семье."
-            },
-            {
-                description: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. Это единственная сигнатурная гитара, которую я имею, с 2021 года. Я люблю группы Misha, Periphery & Haunted Shores!",
-                alt: "Jackson Pro Misha Mansoor Juggernaut HT6QM CB. Ещё одна сигнатурная гитара, которую я имею, с 2021 года."
-            },
-            {
-                description: "Mahalo Purple Ukulele. Весёлое дополнение к моей коллекции для расслабления и игры различных музыкальных стилей!",
-                alt: "Mahalo Purple Ukulele. Весёлое дополнение к моей коллекции для расслабления."
-            }
+        },
+        disclaimer: "Простое личное портфолио, созданное для демонстрации моего опыта, проектов и интересов.",
+        experience_title: "Опыт",
+        contact_title: "Контакты",
+        interests_title: "Интересы",
+        experience_people: [
+            { title: "OnlyNet", summary: "Web Developer", when: "08/07/2024 - Настоящее время" },
+            { title: "Greek Army", summary: "Software Engineer", when: "17/03/2023 - 17/03/2024" },
+            { title: "Alpha Bank", summary: "Application Developer", when: "06/06/2022 - 09/12/2022" },
+            { title: "AboutNet", summary: "Web Developer Intern", when: "13/01/2021 - 12/04/2021" }
+        ],
+        contact_people: [
+            { title: "Email", summary: "kostaskonstantakis6@gmail.com" },
+            { title: "LinkedIn", summary: "Kostas Konstantakis" },
+            { title: "GitHub", summary: "kostaskonstantakis" }
+        ],
+        interests_people: [
+            { title: "Web Development", summary: "Создание современных, надёжных и удобных цифровых решений." },
+            { title: "Music", summary: "Прослушивание, открытие и наслаждение разными стилями и звуками." },
+            { title: "Travel", summary: "Путешествия, новые знакомства и знакомство с местной культурой." }
         ]
     }
 };

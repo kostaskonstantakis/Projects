@@ -1,7 +1,7 @@
 // ===== DARK MODE =====
 (function () {
 	const darkModeToggle = document.getElementById('dark-mode-toggle');
-	const darkModeKey = 'guitars-dark-mode';
+	const darkModeKey = 'site-dark-mode';
 
 	function setDarkMode(isDark) {
 		document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
@@ -40,37 +40,34 @@
 (function () {
 	const searchInput = document.getElementById('search-filter');
 	const sortSelect = document.getElementById('sort-filter');
-	let guitarData = window.guitarData ? [...window.guitarData] : [];
+	let dataItems = Array.isArray(window.projectData) ? [...window.projectData] : [];
 
 	function applyFiltersAndSort() {
 		const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
 		const sortValue = sortSelect ? sortSelect.value : 'default';
 
-		let filtered = window.guitarData.filter(function (g) {
-			if (!searchTerm) return true;
-			const desc = window.translations[window.currentLang].guitars[g.index].description.toLowerCase();
-			return desc.includes(searchTerm);
-		});
+		let filtered = dataItems.slice();
 
-		// Sort
-		if (sortValue === 'newest') {
-			filtered.sort(function (a, b) { return b.index - a.index; });
-		} else if (sortValue === 'type') {
-			filtered.sort(function (a, b) { return a.type.localeCompare(b.type); });
-		} else if (sortValue === 'name') {
-			filtered.sort(function (a, b) {
-				const aDesc = window.translations[window.currentLang].guitars[a.index].description;
-				const bDesc = window.translations[window.currentLang].guitars[b.index].description;
-				return aDesc.localeCompare(bDesc);
+		if (searchTerm) {
+			filtered = filtered.filter(function (item) {
+				return (item.summary || '').toLowerCase().includes(searchTerm);
 			});
 		}
 
-		// Re-render guitars
-		if (window.renderGuitars) {
-			window.renderGuitars(filtered);
+		if (sortValue === 'newest') {
+			filtered.sort(function (a, b) { return (b.index || 0) - (a.index || 0); });
+		} else if (sortValue === 'type') {
+			filtered.sort(function (a, b) { return (a.type || '').localeCompare(b.type || ''); });
+		} else if (sortValue === 'name') {
+			filtered.sort(function (a, b) {
+				return (a.title || '').localeCompare(b.title || '');
+			});
 		}
 
-		// Hide non-matching type-filter items
+		if (window.renderCards) {
+			window.renderCards(filtered);
+		}
+
 		if (window.applyTypeFilter) {
 			window.applyTypeFilter();
 		}
@@ -86,7 +83,7 @@
 
 // ===== FAVORITES SYSTEM =====
 (function () {
-	const favoritesKey = 'guitars-favorites';
+	const favoritesKey = 'site-favorites';
 	window.favorites = new Set();
 
 	try {
@@ -113,8 +110,8 @@
 	};
 
 	function updateFavoriteIcons() {
-		document.querySelectorAll('.guitar-favorite-btn').forEach(function (btn) {
-			const index = parseInt(btn.dataset.guitarIndex, 10);
+		document.querySelectorAll('.project-favorite-btn').forEach(function (btn) {
+			const index = parseInt(btn.dataset.projectIndex, 10);
 			btn.classList.toggle('favorite-active', window.isFavorite(index));
 			btn.textContent = window.isFavorite(index) ? '❤️' : '🤍';
 		});
@@ -122,10 +119,12 @@
 
 	window.updateFavoriteIcons = updateFavoriteIcons;
 
-	// Hook into renderGuitars to update favorite icons after rendering
-	const originalRender = window.renderGuitars;
-	window.renderGuitars = function(guitarsToRender) {
-		originalRender(guitarsToRender);
+	// Hook into the generic renderer to update favorite icons after rendering
+	const originalRender = window.renderCards || window.renderProjects;
+	window.renderCards = function(itemsToRender) {
+		if (originalRender) {
+			originalRender(itemsToRender);
+		}
 		updateFavoriteIcons();
 	};
 })();
@@ -204,14 +203,14 @@
 			lightbox.hidden = true;
 			document.body.style.overflow = '';
 		} else if (e.key === 'ArrowLeft') {
-			const gallery = document.getElementById('guitars-section');
+			const gallery = document.getElementById('projects-section');
 			if (gallery && gallery.classList.contains('orientation-slideshow')) {
 				const prevBtn = document.querySelector('.splide__arrow--prev');
 				if (prevBtn) prevBtn.click();
 				e.preventDefault();
 			}
 		} else if (e.key === 'ArrowRight') {
-			const gallery = document.getElementById('guitars-section');
+			const gallery = document.getElementById('projects-section');
 			if (gallery && gallery.classList.contains('orientation-slideshow')) {
 				const nextBtn = document.querySelector('.splide__arrow--next');
 				if (nextBtn) nextBtn.click();
@@ -229,7 +228,7 @@
 
 // ===== FOCUS MANAGEMENT & VISIBILITY =====
 (function () {
-	document.querySelectorAll('.guitar-section').forEach(function (section) {
+	document.querySelectorAll('.project-section').forEach(function (section) {
 		section.addEventListener('focus', function () {
 			section.style.outline = '2px solid #1a1a1a';
 			section.style.outlineOffset = '2px';

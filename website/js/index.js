@@ -1,13 +1,137 @@
-// render guitar sections from data.js
 var currentLang = 'en';
-var guitarSections = [];
-var applyOrientation = function() {};
+var contentSections = [];
 var applyTypeFilter = function() {};
+
+function getCurrentTranslations() {
+    var translations = window.translations || {};
+    return translations[currentLang] || translations.en || {};
+}
+
+function createStructuredCard(item) {
+    var article = document.createElement('article');
+    article.className = 'project-section';
+    article.setAttribute('role', 'article');
+    article.style.setProperty('--project-accent', item.accent || '#505050');
+
+    var visual = document.createElement('div');
+    visual.className = 'project-section__visual';
+
+    var icon = document.createElement('span');
+    icon.className = 'project-section__icon';
+    icon.textContent = item.icon || '🔧';
+
+    var badge = document.createElement('span');
+    badge.className = 'project-section__badge';
+    badge.textContent = item.title || '';
+
+    visual.appendChild(icon);
+    visual.appendChild(badge);
+
+    var body = document.createElement('div');
+    body.className = 'project-section__body';
+
+    var title = document.createElement('h3');
+    title.className = 'project-section__title';
+    title.textContent = item.title || '';
+
+    var summary = document.createElement('p');
+    summary.className = 'project-section__summary';
+    summary.textContent = item.summary || '';
+
+    body.appendChild(title);
+
+    if (item.when) {
+        var when = document.createElement('p');
+        when.className = 'project-section__summary';
+        when.textContent = item.when;
+        body.appendChild(when);
+    }
+
+    body.appendChild(summary);
+
+    var tagsWrap = document.createElement('div');
+    tagsWrap.className = 'project-section__tags';
+    if (Array.isArray(item.tags)) {
+        item.tags.forEach(function(tag) {
+            var tagEl = document.createElement('span');
+            tagEl.className = 'project-section__tag';
+            tagEl.textContent = tag;
+            tagsWrap.appendChild(tagEl);
+        });
+    }
+
+    if (item.url) {
+        var link = document.createElement('a');
+        link.className = 'project-section__link';
+        link.href = item.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = '';
+        body.appendChild(tagsWrap);
+        body.appendChild(link);
+    } else {
+        body.appendChild(tagsWrap);
+    }
+
+    article.appendChild(visual);
+    article.appendChild(body);
+
+    return article;
+}
+
+function renderStructuredSection(sectionId, key) {
+    var section = document.getElementById(sectionId);
+    if (!section) return;
+
+    var current = getCurrentTranslations();
+    var data = Array.isArray(window[key + 'Data']) ? window[key + 'Data'] : [];
+
+    if (section.tagName && section.tagName.toLowerCase() === 'details') {
+        section.innerHTML = '';
+
+        var summary = document.createElement('summary');
+        summary.textContent = current[key + '_title'] || 'Experience';
+        section.appendChild(summary);
+
+        var container = document.createElement('div');
+        container.className = 'experience-section__content';
+
+        data.forEach(function(item) {
+            container.appendChild(createStructuredCard(item));
+        });
+
+        section.appendChild(container);
+        return;
+    }
+
+    section.innerHTML = '';
+
+    var heading = document.createElement('h2');
+    heading.className = 'project-section__heading';
+    heading.textContent = current[key + '_title'] || key;
+    section.appendChild(heading);
+
+    data.forEach(function(item) {
+        section.appendChild(createStructuredCard(item));
+    });
+}
+
+function renderExperienceSection() {
+    renderStructuredSection('experience-section', 'experience');
+}
+
+function renderContactSection() {
+    renderStructuredSection('contact-section', 'contact');
+}
+
+function renderInterestsSection() {
+    renderStructuredSection('interests-section', 'interests');
+}
 
 (function() {
     window.renderProjects = function(projectsToRender) {
-        var section = document.getElementById('projects-section') || document.getElementById('guitars-section');
-        var dataToRender = projectsToRender || window.projectData || window.guitarData;
+        var section = document.getElementById('projects-section');
+        var dataToRender = projectsToRender || window.projectData;
         if (section && dataToRender && Array.isArray(dataToRender)) {
             section.innerHTML = '';
             dataToRender.forEach(function(project) {
@@ -57,7 +181,7 @@ var applyTypeFilter = function() {};
                 link.href = project.url;
                 link.target = '_blank';
                 link.rel = 'noopener noreferrer';
-                link.textContent = 'View on GitHub';
+                link.textContent = '';
 
                 body.appendChild(title);
                 body.appendChild(summary);
@@ -70,11 +194,18 @@ var applyTypeFilter = function() {};
             });
         }
     };
-    window.renderGuitars = window.renderProjects;
+
+    window.renderCards = window.renderProjects;
     window.renderProjects();
+    window.renderExperience = renderExperienceSection;
+    window.renderContact = renderContactSection;
+    window.renderInterests = renderInterestsSection;
+    window.renderExperience();
+    window.renderContact();
+    window.renderInterests();
 
     // Language switcher
-    var langFilter = document.getElementById('language-filter');
+    var langFilter = document.getElementById('language-filter') || document.querySelector('.language-filter');
     if (langFilter) {
         function updateLanguage() {
             currentLang = langFilter.value;
@@ -151,17 +282,19 @@ var applyTypeFilter = function() {};
             }
             // Update year and age
             updateYearAndAge();
-            // Re-render projects
+            // Re-render projects and dynamic sections
             window.renderProjects();
+            window.renderExperience();
+            window.renderContact();
+            window.renderInterests();
             // Re-apply filters
-            applyOrientation();
             applyTypeFilter();
             // Save to localStorage
-            try { localStorage.setItem('guitar-language', currentLang); } catch (e) {}
+            try { localStorage.setItem('language', currentLang); } catch (e) {}
         }
         // Load from localStorage
         try {
-            var savedLang = localStorage.getItem('guitar-language');
+            var savedLang = localStorage.getItem('language');
             if (savedLang && window.translations[savedLang]) {
                 currentLang = savedLang;
                 langFilter.value = savedLang;
@@ -194,179 +327,13 @@ function updateYearAndAge() {
 
 updateYearAndAge();
 
-/* Orientation: εφαρμογή + αποθήκευση στο localStorage */
-(function () {
-	var filter = document.getElementById('orientation-filter');
-	var section = document.getElementById('guitars-section');
-	if (!filter || !section) return;
-
-	var STORAGE_KEY = 'guitars-orientation';
-	var splideInstance = null;
-	var originalHTML = null;
-
-	function destroySplide() {
-		if (splideInstance) {
-			splideInstance.destroy();
-			splideInstance = null;
-		}
-	}
-
-	function initSplide() {
-		destroySplide();
-		
-		// store original HTML if not already done
-		if (!originalHTML) {
-			originalHTML = section.innerHTML;
-		}
-		
-		// clear and build Splide structure
-		section.innerHTML = '';
-		section.classList.add('splide');
-		section.setAttribute('aria-label', 'Guitar Carousel');
-		
-		// create track
-		var track = document.createElement('div');
-		track.className = 'splide__track';
-		
-		// create list
-		var list = document.createElement('ul');
-		list.className = 'splide__list';
-		
-		// collect all visible guitar sections from original HTML
-		var temp = document.createElement('div');
-		temp.innerHTML = originalHTML;
-		var items = temp.querySelectorAll('.guitar-section');
-		var slideCount = 0;
-		
-		items.forEach(function (item) {
-			if (!item.classList.contains('type-hidden')) {
-				var li = document.createElement('li');
-				li.className = 'splide__slide';
-				
-				// extract just the img-wrap for cleaner slides
-				var imgWrap = item.querySelector('.guitar-section__img-wrap');
-				if (imgWrap) {
-					var wrap = imgWrap.cloneNode(true);
-					wrap.style.position = 'relative';
-					wrap.style.display = 'flex';
-					wrap.style.alignItems = 'center';
-					wrap.style.justifyContent = 'center';
-					li.appendChild(wrap);
-					list.appendChild(li);
-					slideCount++;
-				}
-			}
-		});
-		
-		track.appendChild(list);
-		section.appendChild(track);
-		
-		// create pagination
-		var pagination = document.createElement('ul');
-		pagination.className = 'splide__pagination';
-		section.appendChild(pagination);
-		
-		// create arrows
-		var arrows = document.createElement('div');
-		arrows.className = 'splide__arrows';
-		var prevBtn = document.createElement('button');
-		prevBtn.className = 'splide__arrow splide__arrow--prev';
-		prevBtn.type = 'button';
-		prevBtn.setAttribute('aria-label', 'Previous slide');
-		prevBtn.textContent = '❮';
-		var nextBtn = document.createElement('button');
-		nextBtn.className = 'splide__arrow splide__arrow--next';
-		nextBtn.type = 'button';
-		nextBtn.setAttribute('aria-label', 'Next slide');
-		nextBtn.textContent = '❯';
-		arrows.appendChild(prevBtn);
-		arrows.appendChild(nextBtn);
-		section.appendChild(arrows);
-		
-		if (slideCount === 0) {
-			console.warn('No visible guitar sections found for slideshow');
-			return;
-		}
-		
-		try {
-			splideInstance = new Splide(section, {
-				type: 'fade',
-				perPage: 1,
-				rewind: true,
-				arrows: 'slider',
-				pagination: 'slider'
-			}).mount();
-			console.log('Splide mounted with ' + slideCount + ' slides');
-			
-			// Update slide counter
-			if (window.updateSlideCounter) {
-				window.updateSlideCounter(0, slideCount);
-				splideInstance.on('move', function(newIndex) {
-					window.updateSlideCounter(newIndex, slideCount);
-				});
-			}
-		} catch (e) {
-			console.error('Splide initialization failed:', e);
-		}
-	}
-
-	function restoreGrid() {
-		destroySplide();
-		if (originalHTML) {
-			section.innerHTML = originalHTML;
-			section.classList.remove('splide');
-		}
-	}
-
-	applyOrientation = function() {
-		var value = filter.value;
-		var typeFilterControl = document.querySelector('.type-filter-control');
-		
-		if (value === 'slideshow') {
-			initSplide();
-			section.classList.remove('orientation-vertical', 'orientation-horizontal');
-			section.classList.add('orientation-slideshow');
-			// hide type filter in slideshow
-			if (typeFilterControl) {
-				typeFilterControl.style.display = 'none';
-			}
-		} else {
-			if (section.classList.contains('orientation-slideshow')) {
-				restoreGrid();
-				// reapply type filter after restoring grid
-				if (applyTypeFilter) {
-					applyTypeFilter();
-				}
-			}
-			section.classList.remove('orientation-slideshow');
-			section.classList.remove('orientation-horizontal', 'orientation-vertical');
-			section.classList.add('orientation-' + value);
-			// show type filter in grid modes
-			if (typeFilterControl) {
-				typeFilterControl.style.display = '';
-			}
-		}
-		try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
-	};
-
-	try {
-		var saved = localStorage.getItem(STORAGE_KEY);
-		if (saved === 'horizontal' || saved === 'vertical' || saved === 'slideshow') {
-			filter.value = saved;
-		}
-	} catch (e) {}
-	applyOrientation();
-	filter.addEventListener('change', applyOrientation);
-})();
-
-/* Φίλτρο τύπου (electric / bass / acoustic) */
 (function () {
 	var filter = document.getElementById('type-filter');
 	if (!filter) return;
 
 	applyTypeFilter = function() {
 		var value = filter.value;
-		guitarSections.forEach(function (el) {
+		contentSections.forEach(function (el) {
 			var typeAttr = el.getAttribute('data-type') || '';
 			var types = typeAttr.split(/\s+/).filter(Boolean);
 			var match = value === 'all' || types.indexOf(value) !== -1;
@@ -375,111 +342,4 @@ updateYearAndAge();
 	};
 	filter.addEventListener('change', applyTypeFilter);
 	applyTypeFilter();
-})();
-
-/* Lightbox: κλικ σε εικόνα κιθάρας για μεγέθυνση */
-(function () {
-	var lightbox = document.getElementById('lightbox');
-	var lightboxImg = lightbox && lightbox.querySelector('.lightbox__img');
-	var lightboxCaption = lightbox && lightbox.querySelector('.lightbox__caption');
-	var closeBtn = lightbox && lightbox.querySelector('.lightbox__close');
-	if (!lightbox || !lightboxImg) return;
-
-	var previousFocus = null;
-	var focusableElements = [];
-	function updateFocusableElements() {
-		focusableElements = Array.prototype.slice.call(lightbox.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
-			.filter(function (el) { return !el.disabled && el.offsetParent !== null; });
-	}
-
-	function trapFocus(event) {
-		if (event.key !== 'Tab') return;
-		updateFocusableElements();
-		if (!focusableElements.length) return;
-		var first = focusableElements[0];
-		var last = focusableElements[focusableElements.length - 1];
-		if (event.shiftKey) {
-			if (document.activeElement === first || document.activeElement === lightbox) {
-				event.preventDefault();
-				last.focus();
-			}
-		} else {
-			if (document.activeElement === last) {
-				event.preventDefault();
-				first.focus();
-			}
-		}
-	}
-
-	function openLightbox(src, caption) {
-		previousFocus = document.activeElement;
-		lightboxImg.src = src;
-		lightboxImg.alt = caption || '';
-		lightboxCaption.textContent = caption || '';
-		
-		// rotate if the main gallery itself is in horizontal mode
-		var gallery = document.getElementById('guitars-section');
-		if (gallery && gallery.classList.contains('orientation-horizontal')) {
-			lightbox.classList.add('orientation-horizontal');
-		} else {
-			lightbox.classList.remove('orientation-horizontal');
-		}
-		
-		lightbox.hidden = false;
-		updateFocusableElements();
-		if (closeBtn) {
-			closeBtn.focus();
-		} else if (focusableElements.length) {
-			focusableElements[0].focus();
-		}
-		document.addEventListener('keydown', trapFocus, true);
-		document.body.style.overflow = 'hidden';
-	}
-
-	function closeLightbox() {
-		lightbox.hidden = true;
-		lightboxImg.removeAttribute('src');
-		lightbox.classList.remove('orientation-horizontal');
-		document.body.style.overflow = '';
-		document.removeEventListener('keydown', trapFocus, true);
-		if (previousFocus && previousFocus.focus) {
-			previousFocus.focus();
-		}
-	}
-
-	// Use event delegation
-	var section = document.getElementById('guitars-section');
-	if (section) {
-		section.addEventListener('click', function (e) {
-			var guitarSection = e.target.closest('.guitar-section');
-			if (!guitarSection) return;
-			e.preventDefault();
-			var img = guitarSection.querySelector('img');
-			if (!img) return;
-			// toggle overlay on click
-			guitarSection.classList.toggle('active');
-			// remove active class from siblings
-			document.querySelectorAll('.guitar-section.active').forEach(function (el) {
-				if (el !== guitarSection) el.classList.remove('active');
-			});
-			openLightbox(img.src, guitarSection.getAttribute('data-description') || img.alt);
-		});
-	}
-	
-	// close overlay when clicking elsewhere
-	document.addEventListener('click', function (e) {
-		if (!e.target.closest('.guitar-section')) {
-			document.querySelectorAll('.guitar-section.active').forEach(function (section) {
-				section.classList.remove('active');
-			});
-		}
-	});
-
-	if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-	lightbox.addEventListener('click', function (e) {
-		if (e.target === lightbox) closeLightbox();
-	});
-	document.addEventListener('keydown', function (e) {
-		if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
-	});
 })();
