@@ -17,19 +17,21 @@
 	<script src="node_modules/@splidejs/splide/dist/js/splide.min.js"></script>
 </head>
 <body>
+	<a class="skip-link" href="#main-content">Skip to main content</a>
 	<header>
 		<nav class="main-navigation" aria-label="Main navigation menu">
-			<a href="#experience" class="experience">Experience</a>
-			<a href="#projects" class="projects">Projects</a>
-			<a href="#contact" class="contact">Contact</a>
-			<a href="#interests" class="interests">Interests</a>
+			<a href="#experience-section" class="experience">Experience</a>
+			<a href="#projects-section" class="projects">Projects</a>
+			<a href="#contact-section" class="contact">Contact</a>
+			<a href="#interests-section" class="interests">Interests</a>
 		</nav>
 	</header>
-	<main class="main-content">
+	<main id="main-content" class="main-content">
+		<h1 class="visually-hidden">Kostas Konstantakis portfolio</h1>
 		<div class="profile-picture-container">
 			<img class="profile-picture" src="css/media/kostas.jpg" alt="Profile picture of Kostas Konstantakis">
 		</div>
-		<p class="synopsis">I am a Web Developer & Software Engineer.</p>
+		<p class="synopsis"></p>
 		<div class="controls">
 			<div class="language-control">
 				<label for="language-filter"><strong>Select language:</strong></label>
@@ -38,20 +40,19 @@
 					<option value="el">Ελληνικά</option>
 					<option value="ru">Русский</option>
 				</select>
+				<span id="language-desc" class="visually-hidden">Choose the language for the website content.</span>
 			</div>
 		</div>
-		<details class="experience-section" id="experience-section" aria-label="Experience">
+		<details class="experience-section" id="experience-section" aria-label="Experience" open>
 			<summary class="experience-summary">Experience</summary>
 		</details>
-		<section class="projects-section" id="projects-section" aria-label="Projects">
-
-		</section>
-		<div class="contact-section" id="contact-section" aria-label="Contact">
-
+		<div class="projects-section-container">
+			<section class="projects-section" id="projects-section" aria-label="Projects"></section>
 		</div>
-		<section class="interests-section" id="interests-section" aria-label="Interests">
-
-		</section>
+		<div class="contact-section-container">
+			<div class="contact-section" id="contact-section" aria-label="Contact"></div>
+		</div>
+		<section class="interests-section" id="interests-section" aria-label="Interests"></section>
 	</main>
 	<footer>
 		<nav class="footer-links" aria-label="Social media links">
@@ -60,7 +61,7 @@
 			<a class="footer-link" id="e-mail" href="mailto:kostaskonstantakis6@gmail.com" aria-label="Send email" target="_blank"><i class="fa" aria-hidden="true">&#xf0e0;</i></a>
 		</nav>
 		<div class="name-year"> 
-			<a href="#" class="footer-text">Kostas Konstantakis © <span id="year"></span></a>
+			<a href="#" class="sig-text">Kostas Konstantakis © <span id="year"></span></a>
 		</div>
 	</footer>
     <script src="js/data.js"></script>

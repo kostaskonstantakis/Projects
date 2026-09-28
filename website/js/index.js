@@ -66,7 +66,7 @@ function createStructuredCard(item) {
         link.href = item.url;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
-        link.textContent = '';
+        link.textContent = 'Visit ' + (item.title || 'project');
         body.appendChild(tagsWrap);
         body.appendChild(link);
     } else {
@@ -133,7 +133,17 @@ function renderInterestsSection() {
         var section = document.getElementById('projects-section');
         var dataToRender = projectsToRender || window.projectData;
         if (section && dataToRender && Array.isArray(dataToRender)) {
+            var container = section.parentElement;
             section.innerHTML = '';
+
+            var heading = container.querySelector('.project-section__heading') || document.createElement('h2');
+            heading.className = 'project-section__heading';
+            heading.textContent = getCurrentTranslations().projects_title || 'Projects';
+
+            if (!heading.parentElement) {
+                container.insertBefore(heading, section);
+            }
+
             dataToRender.forEach(function(project) {
                 var article = document.createElement('article');
                 article.className = 'project-section';
@@ -181,7 +191,7 @@ function renderInterestsSection() {
                 link.href = project.url;
                 link.target = '_blank';
                 link.rel = 'noopener noreferrer';
-                link.textContent = '';
+                link.textContent = 'Visit ' + (project.title || 'project');
 
                 body.appendChild(title);
                 body.appendChild(summary);

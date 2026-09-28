@@ -4,7 +4,7 @@ window.translations = {
         page_title: "Kostas Konstantakis – Portfolio",
         header_text: "Welcome to Kostas' Portfolio!",
         footer_text: "Kostas Konstantakis &#169; <span id=\"year\"></span>",
-        synopsis: "Hello, everyone! My name is Kostas.<br>Welcome to my personal portfolio website.<br>I enjoy building modern digital experiences and sharing my work, projects, and interests.<br>Feel free to explore what I have been up to lately.<br>You can also connect with me through the links below.",
+        synopsis: "Hello, everyone! My name is Kostas.<br>I am a Web Developer & Software Engineer.<br>Welcome to my personal portfolio website.<br>I enjoy building modern digital experiences and sharing my work, projects, and interests.<br>Feel free to explore what I have been up to lately.<br>You can also connect with me through the links below.",
         orientation_label: "Layout orientation:",
         orientation_options: {
             vertical: "Vertical",
@@ -30,6 +30,7 @@ window.translations = {
             name: "A-Z"
         },
         disclaimer: "A simple personal portfolio website built to showcase my experience, projects, and interests.",
+        projects_title: "Projects",
         experience_title: "Experience",
         contact_title: "Contact",
         interests_title: "Interests",
@@ -54,7 +55,7 @@ window.translations = {
         page_title: "Κώστας Κωνσταντάκης – Portfolio",
         header_text: "Καλώς ήρθατε στο portfolio του Κώστα!",
         footer_text: "Κώστας Κωνσταντάκης &#169; <span id=\"year\"></span>",
-        synopsis: "Γεια σας! Με λένε Κώστα.<br>Καλώς ήρθατε στο προσωπικό μου portfolio.<br>Μου αρέσει να δημιουργώ σύγχρονες ψηφιακές εμπειρίες και να μοιράζομαι τις δουλειές, τα projects και τα ενδιαφέροντά μου.<br>Νιώστε ελεύθεροι να εξερευνήσετε τι έχω κάνει πρόσφατα.<br>Μπορείτε επίσης να επικοινωνήσετε μαζί μου μέσω των παρακάτω συνδέσμων.",
+        synopsis: "Γεια σας! Με λένε Κώστα.<br>Είμαι Web Developer & Software Engineer.<br>Καλώς ήρθατε στο προσωπικό μου portfolio.<br>Μου αρέσει να δημιουργώ σύγχρονες ψηφιακές εμπειρίες και να μοιράζομαι τις δουλειές, τα projects και τα ενδιαφέροντά μου.<br>Νιώστε ελεύθεροι να εξερευνήσετε τι έχω κάνει πρόσφατα.<br>Μπορείτε επίσης να επικοινωνήσετε μαζί μου μέσω των παρακάτω συνδέσμων.",
         orientation_label: "Προσανατολισμός διάταξης:",
         orientation_options: {
             vertical: "Κατακόρυφος",
@@ -80,6 +81,7 @@ window.translations = {
             name: "Α-Ω"
         },
         disclaimer: "Απλό προσωπικό portfolio που δείχνει την εμπειρία, τα projects και τα ενδιαφέροντά μου.",
+        projects_title: "Έργα",
         experience_title: "Εμπειρία",
         contact_title: "Επικοινωνία",
         interests_title: "Ενδιαφέροντα",
@@ -104,7 +106,7 @@ window.translations = {
         page_title: "Костас Константакис – Портфолио",
         header_text: "Добро пожаловать в портфолио Костаса!",
         footer_text: "Костас Константакис &#169; <span id=\"year\"></span>",
-        synopsis: "Привет всем! Меня зовут Костас.<br>Добро пожаловать в моё личное портфолио.<br>Мне нравится создавать современные цифровые решения и делиться своими проектами, идеями и интересами.<br>Не стесняйтесь исследовать, чем я занимался недавно.<br>Также вы можете связаться со мной через ссылки ниже.",
+        synopsis: "Привет всем! Меня зовут Костас.<br>Я программист.<br>Добро пожаловать в моё личное портфолио.<br>Мне нравится создавать современные цифровые решения и делиться своими проектами, идеями и интересами.<br>Не стесняйтесь исследовать, чем я занимался недавно.<br>Также вы можете связаться со мной через ссылки ниже.",
         orientation_label: "Ориентация макета:",
         orientation_options: {
             vertical: "Вертикальный",
@@ -130,6 +132,7 @@ window.translations = {
             name: "А-Я"
         },
         disclaimer: "Простое личное портфолио, созданное для демонстрации моего опыта, проектов и интересов.",
+        projects_title: "Проекты",
         experience_title: "Опыт",
         contact_title: "Контакты",
         interests_title: "Интересы",

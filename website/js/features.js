@@ -1,4 +1,3 @@
-// ===== DARK MODE =====
 (function () {
 	const darkModeToggle = document.getElementById('dark-mode-toggle');
 	const darkModeKey = 'site-dark-mode';

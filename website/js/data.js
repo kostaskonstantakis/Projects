@@ -1,7 +1,7 @@
 window.projectData = [
     {
         title: "GitHub",
-        summary: "My personal GitHub profile and code samples.",
+        summary: "My personal GitHub profile and code repositories.",
         url: "https://github.com/kostaskonstantakis",
         icon: "🌐",
         accent: "rgb(34, 62, 221)",
@@ -10,19 +10,19 @@ window.projectData = [
     {
         title: "Portfolio Showcase",
         summary: "A polished interactive presentation built with modern frontend practices.",
-        url: "https://kostaskonstantakis.github.io/",
+        url: "https://kostaskonstantakis.github.io/guitars/",
         icon: "✨",
         accent: "#EF6C00",
-        tags: ["Frontend", "Gallery", "UI"]
+        tags: ["Frontend", "FE", "Guitar Gallery", "UI"]
     },
     {
-        title: "Project Archive",
-        summary: "A curated collection of work samples, demos, and links.",
-        url: "#",
-        icon: "📁",
-        accent: "#d20a11",
-        tags: ["Frontend", "Gallery", "UI"]
-    }
+        title: "Portfolio Showcase",
+        summary: "A polished interactive presentation built with modern frontend practices.",
+        url: "https://kostaskonstantakis.github.io/guitars-tailwind/",
+        icon: "✨",
+        accent: "orange",
+        tags: ["Frontend", "FE",  "Tailwind CSS", "Guitar Gallery", "UI/UX"]
+    },
 ];
 
 window.experienceData = [
@@ -84,17 +84,18 @@ window.contactData = [
         icon: "🌐",
         accent: "#171515",
         tags: ["Code", "Projects"]
+    },
+    {
+        title: "Give me a call",
+        summary: "kostaskonstantakis",
+        url: "tel:+3069833347780",
+        icon: "🌐",
+        accent: "#fefed0",
+        tags: ["Call", "Telephone"]
     }
 ];
 
 window.interestsData = [
-    {
-        title: "Web Development",
-        summary: "Building modern, reliable, and user-friendly digital experiences.",
-        icon: "💻",
-        accent: "#5D6DFF",
-        tags: ["Frontend", "Backend", "UX"]
-    },
     {
         title: "Music",
         summary: "Listening, discovering, and enjoying different styles and sounds.",
@@ -103,10 +104,24 @@ window.interestsData = [
         tags: ["Listening", "Discovery", "Culture"]
     },
     {
-        title: "Travel",
+        title: "Travelling",
         summary: "Exploring new places, meeting people, and discovering local culture.",
         icon: "✈️",
         accent: "#00A7E1",
         tags: ["Culture", "Cities", "Road Trips"]
+    },
+    {
+        title: "Programming",
+        summary: "Building modern, reliable, and user-friendly digital experiences.",
+        icon: "💻",
+        accent: "#5D6DFF",
+        tags: ["Programming", "Development", "Drupal", "PHP", "HTML", "CSS", "JavaScript", "Java", "WordPress", "Frontend", "Backend", "UI/UX"]
+    },
+    {
+        title: "Board Games",
+        summary: "Playing strategic board games with friends and family is always fun.",
+        icon: "♟️",
+        accent: "#8B4513",
+        tags: ["Board Games", "Strategy", "Social", "Fun"]
     }
 ];
