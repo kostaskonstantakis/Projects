@@ -11,7 +11,7 @@ window.projectData = [
         title: "Portfolio Showcase",
         summary: "A polished interactive presentation built with modern frontend practices.",
         url: "https://kostaskonstantakis.github.io/guitars/",
-        icon: "✨",
+        icon: "🎸",
         accent: "#EF6C00",
         tags: ["Frontend", "FE", "Guitar Gallery", "UI"]
     },
@@ -19,7 +19,7 @@ window.projectData = [
         title: "Portfolio Showcase",
         summary: "A polished interactive presentation built with modern frontend practices.",
         url: "https://kostaskonstantakis.github.io/guitars-tailwind/",
-        icon: "✨",
+        icon: "🎸",
         accent: "orange",
         tags: ["Frontend", "FE",  "Tailwind CSS", "Guitar Gallery", "UI/UX"]
     },
@@ -101,27 +101,46 @@ window.interestsData = [
         summary: "Listening, discovering, and enjoying different styles and sounds.",
         icon: "🎵",
         accent: "#EF6C00",
-        tags: ["Listening", "Discovery", "Culture"]
+        tags: ["Listening", "Playing", "Discovery", "Culture"]
     },
     {
         title: "Travelling",
         summary: "Exploring new places, meeting people, and discovering local culture.",
         icon: "✈️",
         accent: "#00A7E1",
-        tags: ["Culture", "Cities", "Road Trips"]
+        tags: ["Culture", "Abroad", "Trips"]
     },
     {
-        title: "Programming",
-        summary: "Building modern, reliable, and user-friendly digital experiences.",
-        icon: "💻",
+        title: "Foreign Languages",
+        summary: "Learning and mastering different languages.",
+        icon: "🌐",
         accent: "#5D6DFF",
-        tags: ["Programming", "Development", "Drupal", "PHP", "HTML", "CSS", "JavaScript", "Java", "WordPress", "Frontend", "Backend", "UI/UX"]
+        tags: ["Foreign Languages", "Communication", "Culture"]
     },
     {
         title: "Board Games",
         summary: "Playing strategic board games with friends and family is always fun.",
         icon: "♟️",
         accent: "#8B4513",
-        tags: ["Board Games", "Strategy", "Social", "Fun"]
+        tags: ["Board Games", "Strategy", "Games", "Fun"]
+    }
+];
+
+window.educationData = [
+    {
+        title: "BSc in Computer Science",
+        summary: "University of Crete, Department of Computer Science, Heraklion, Crete, Greece.",
+        icon: "🎓",
+        accent: "#0f766e",
+        when: "09/2013 - 07/2022",
+        tags: ["Bachelor of Science", "Computer Science", "University of Crete", "CSD", "UoC"]
+    },
+    {
+        title: "RGT Grade 5",
+        summary: "University of West London, London College of Music, United Kingdom.",
+        icon: "🎸",
+        accent: "#28aa9f",
+        when: "09/2026",
+        tags: ["RGT Grade 5", "Electric Guitar", "University of West London", "LCME", "London College of Music", "UWL"]
     }
 ];

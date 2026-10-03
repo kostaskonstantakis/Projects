@@ -8,13 +8,14 @@ function getCurrentTranslations() {
 }
 
 function createStructuredCard(item) {
+    var current = getCurrentTranslations();
     var article = document.createElement('article');
-    article.className = 'project-section';
+    article.className = 'project-section project-section--card relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md';
     article.setAttribute('role', 'article');
     article.style.setProperty('--project-accent', item.accent || '#505050');
 
     var visual = document.createElement('div');
-    visual.className = 'project-section__visual';
+    visual.className = 'project-section__visual flex items-center justify-between rounded-t-2xl px-4 py-3 text-white';
 
     var icon = document.createElement('span');
     icon.className = 'project-section__icon';
@@ -28,14 +29,14 @@ function createStructuredCard(item) {
     visual.appendChild(badge);
 
     var body = document.createElement('div');
-    body.className = 'project-section__body';
+    body.className = 'project-section__body flex flex-1 flex-col gap-3 p-4';
 
     var title = document.createElement('h3');
-    title.className = 'project-section__title';
+    title.className = 'project-section__title text-lg font-semibold text-neutral-900';
     title.textContent = item.title || '';
 
     var summary = document.createElement('p');
-    summary.className = 'project-section__summary';
+    summary.className = 'project-section__summary text-sm leading-6 text-neutral-700';
     summary.textContent = item.summary || '';
 
     body.appendChild(title);
@@ -50,11 +51,11 @@ function createStructuredCard(item) {
     body.appendChild(summary);
 
     var tagsWrap = document.createElement('div');
-    tagsWrap.className = 'project-section__tags';
+    tagsWrap.className = 'project-section__tags mt-auto flex flex-wrap gap-2';
     if (Array.isArray(item.tags)) {
         item.tags.forEach(function(tag) {
             var tagEl = document.createElement('span');
-            tagEl.className = 'project-section__tag';
+            tagEl.className = 'project-section__tag inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-slate-700';
             tagEl.textContent = tag;
             tagsWrap.appendChild(tagEl);
         });
@@ -62,11 +63,11 @@ function createStructuredCard(item) {
 
     if (item.url) {
         var link = document.createElement('a');
-        link.className = 'project-section__link';
+        link.className = 'project-section__link mt-2 inline-flex items-center text-sm font-semibold text-brand-600 transition hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black';
         link.href = item.url;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
-        link.textContent = 'Visit ' + (item.title || 'project');
+        link.textContent = (current.open_label || 'Open') + ' ' + (item.title || 'project');
         body.appendChild(tagsWrap);
         body.appendChild(link);
     } else {
@@ -86,33 +87,16 @@ function renderStructuredSection(sectionId, key) {
     var current = getCurrentTranslations();
     var data = Array.isArray(window[key + 'Data']) ? window[key + 'Data'] : [];
 
-    if (section.tagName && section.tagName.toLowerCase() === 'details') {
-        section.innerHTML = '';
-
-        var summary = document.createElement('summary');
-        summary.textContent = current[key + '_title'] || 'Experience';
-        section.appendChild(summary);
-
-        var container = document.createElement('div');
-        container.className = 'experience-section__content';
-
-        data.forEach(function(item) {
-            container.appendChild(createStructuredCard(item));
-        });
-
-        section.appendChild(container);
-        return;
-    }
-
     section.innerHTML = '';
 
     var heading = document.createElement('h2');
-    heading.className = 'project-section__heading';
+    heading.className = 'project-section__heading text-lg font-bold text-neutral-800';
     heading.textContent = current[key + '_title'] || key;
     section.appendChild(heading);
 
-    data.forEach(function(item) {
-        section.appendChild(createStructuredCard(item));
+    var localizedItems = current[key + '_people'] || [];
+    data.forEach(function(item, index) {
+        section.appendChild(createStructuredCard(Object.assign({}, item, localizedItems[index] || {})));
     });
 }
 
@@ -128,6 +112,10 @@ function renderInterestsSection() {
     renderStructuredSection('interests-section', 'interests');
 }
 
+function renderEducationSection() {
+    renderStructuredSection('education-section', 'education');
+}
+
 (function() {
     window.renderProjects = function(projectsToRender) {
         var section = document.getElementById('projects-section');
@@ -137,21 +125,24 @@ function renderInterestsSection() {
             section.innerHTML = '';
 
             var heading = container.querySelector('.project-section__heading') || document.createElement('h2');
-            heading.className = 'project-section__heading';
+            heading.className = 'project-section__heading text-lg font-bold text-neutral-800';
             heading.textContent = getCurrentTranslations().projects_title || 'Projects';
 
             if (!heading.parentElement) {
                 container.insertBefore(heading, section);
             }
 
-            dataToRender.forEach(function(project) {
+            var current = getCurrentTranslations();
+            var localizedProjects = current.project_people || [];
+            dataToRender.forEach(function(project, index) {
+                var localizedProject = localizedProjects[index] || {};
                 var article = document.createElement('article');
-                article.className = 'project-section';
+                article.className = 'project-section project-section--card relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md';
                 article.setAttribute('role', 'article');
                 article.style.setProperty('--project-accent', project.accent || '#505050');
 
                 var visual = document.createElement('div');
-                visual.className = 'project-section__visual';
+                visual.className = 'project-section__visual flex items-center justify-between rounded-t-2xl px-4 py-3 text-white';
 
                 var icon = document.createElement('span');
                 icon.className = 'project-section__icon';
@@ -159,26 +150,27 @@ function renderInterestsSection() {
 
                 var badge = document.createElement('span');
                 badge.className = 'project-section__badge';
-                badge.textContent = 'GitHub Repo';
+                badge.textContent = current.project_badge || 'GitHub Repo';
 
                 visual.appendChild(icon);
                 visual.appendChild(badge);
 
                 var body = document.createElement('div');
-                body.className = 'project-section__body';
+                body.className = 'project-section__body flex flex-1 flex-col gap-3 p-4';
 
                 var title = document.createElement('h3');
-                title.className = 'project-section__title';
-                title.textContent = project.title;
+                title.className = 'project-section__title text-lg font-semibold text-neutral-900';
+                title.textContent = localizedProject.title || project.title;
 
                 var summary = document.createElement('p');
-                summary.className = 'project-section__summary';
-                summary.textContent = project.summary;
+                summary.className = 'project-section__summary text-sm leading-6 text-neutral-700';
+                summary.textContent = localizedProject.summary || project.summary;
 
                 var tagsWrap = document.createElement('div');
-                tagsWrap.className = 'project-section__tags';
-                if (Array.isArray(project.tags)) {
-                    project.tags.forEach(function(tag) {
+                tagsWrap.className = 'project-section__tags mt-auto flex flex-wrap gap-2';
+                var projectTags = localizedProject.tags || project.tags;
+                if (Array.isArray(projectTags)) {
+                    projectTags.forEach(function(tag) {
                         var tagEl = document.createElement('span');
                         tagEl.className = 'project-section__tag';
                         tagEl.textContent = tag;
@@ -187,11 +179,11 @@ function renderInterestsSection() {
                 }
 
                 var link = document.createElement('a');
-                link.className = 'project-section__link';
+                link.className = 'project-section__link mt-2 inline-flex items-center text-sm font-semibold text-brand-600 transition hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black';
                 link.href = project.url;
                 link.target = '_blank';
                 link.rel = 'noopener noreferrer';
-                link.textContent = 'Visit ' + (project.title || 'project');
+                link.textContent = (current.visit_label || 'Visit') + ' ' + (localizedProject.title || project.title || 'project');
 
                 body.appendChild(title);
                 body.appendChild(summary);
@@ -210,7 +202,9 @@ function renderInterestsSection() {
     window.renderExperience = renderExperienceSection;
     window.renderContact = renderContactSection;
     window.renderInterests = renderInterestsSection;
+    window.renderEducation = renderEducationSection;
     window.renderExperience();
+    window.renderEducation();
     window.renderContact();
     window.renderInterests();
 
@@ -235,7 +229,15 @@ function renderInterestsSection() {
             if (synopsisEl) {
                 synopsisEl.innerHTML = window.translations[currentLang].synopsis;
             }
+            var signatureName = document.getElementById('signature-name');
+            if (signatureName) {
+                signatureName.textContent = window.translations[currentLang].signature_name;
+            }
             // Update labels
+            var languageLabel = document.querySelector('label[for="language-filter"]');
+            if (languageLabel) {
+                languageLabel.innerHTML = '<strong>' + window.translations[currentLang].language_label + '</strong>';
+            }
             var orientationLabel = document.querySelector('label[for="orientation-filter"]');
             if (orientationLabel) {
                 orientationLabel.innerHTML = '<strong>' + window.translations[currentLang].orientation_label + '</strong>';
@@ -294,6 +296,7 @@ function renderInterestsSection() {
             updateYearAndAge();
             // Re-render projects and dynamic sections
             window.renderProjects();
+            window.renderEducation();
             window.renderExperience();
             window.renderContact();
             window.renderInterests();
