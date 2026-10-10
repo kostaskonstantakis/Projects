@@ -87,7 +87,7 @@ window.contactData = [
     },
     {
         title: "Give me a call",
-        summary: "kostaskonstantakis",
+        summary: "+30 698 333 4780",
         url: "tel:+3069833347780",
         icon: "🌐",
         accent: "#fefed0",

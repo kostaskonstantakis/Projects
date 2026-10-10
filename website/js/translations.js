@@ -5,7 +5,15 @@ window.translations = {
         header_text: "Welcome to Kostas' Portfolio!",
         footer_text: "Kostas Konstantakis &#169; <span id=\"year\"></span>",
         signature_name: "Kostas Konstantakis",
-        synopsis: "Hello, everyone! My name is Kostas.<br>I am a Web Developer & Software Engineer.<br>Welcome to my personal portfolio website.<br>I enjoy building modern digital experiences and sharing my work, projects, and interests.<br>Feel free to explore what I have been up to lately.<br>You can also connect with me through the links below.",
+        synopsis: "Hello, everyone! My name is Kostas. I am a Web Developer & guitarist. Welcome to my personal portfolio website. I enjoy building modern digital experiences and sharing my work, projects, and interests. Feel free to explore what I have been up to lately. You can also connect with me through the links below.",
+        navigation_label: "Main navigation menu",
+        navigation: {
+            experience: "Experience",
+            projects: "Projects",
+            education: "Education",
+            contact: "Contact",
+            interests: "Interests"
+        },
         language_label: "Select language:",
         orientation_label: "Layout orientation:",
         orientation_options: {
@@ -38,7 +46,7 @@ window.translations = {
         interests_title: "Interests",
         education_title: "Education",
         education_people: [
-            { title: "BSc in Computer Science", summary: "University of Crete", tags: ["Bachelor of Science", "Computer Science"] }
+            { title: "BSc in Computer Science", summary: "University of Crete", tags: ["Bachelor of Science", "Computer Science", "University of Crete", "CSD", "UoC"] }
         ],
         project_badge: "GitHub Repo",
         open_label: "Open",
@@ -58,7 +66,7 @@ window.translations = {
             { title: "Email", summary: "kostaskonstantakis6@gmail.com", tags: ["Mail", "Communication"] },
             { title: "LinkedIn", summary: "Kostas Konstantakis", tags: ["Profile", "Networking"] },
             { title: "GitHub", summary: "kostaskonstantakis", tags: ["Code", "Projects"] },
-            { title: "Give me a call", summary: "kostaskonstantakis", tags: ["Call", "Telephone"] }
+            { title: "Give me a call", summary: "+30 698 333 4780", tags: ["Call", "Telephone"] }
         ],
         interests_people: [
             { title: "Music", summary: "Listening, discovering, and enjoying different styles and sounds.", tags: ["Listening", "Playing", "Discovery", "Culture"] },
@@ -72,7 +80,15 @@ window.translations = {
         header_text: "Καλώς ήρθατε στο portfolio του Κώστα!",
         footer_text: "Κώστας Κωνσταντάκης &#169; <span id=\"year\"></span>",
         signature_name: "Κώστας Κωνσταντάκης",
-        synopsis: "Γεια σας! Με λένε Κώστα.<br>Είμαι Web Developer & Software Engineer.<br>Καλώς ήρθατε στο προσωπικό μου portfolio.<br>Μου αρέσει να δημιουργώ σύγχρονες ψηφιακές εμπειρίες και να μοιράζομαι τις δουλειές, τα projects και τα ενδιαφέροντά μου.<br>Νιώστε ελεύθεροι να εξερευνήσετε τι έχω κάνει πρόσφατα.<br>Μπορείτε επίσης να επικοινωνήσετε μαζί μου μέσω των παρακάτω συνδέσμων.",
+        synopsis: "Γεια σας! Με λένε Κώστα. Είμαι Web Developer & κιθαρίστας. Καλώς ήρθατε στο προσωπικό μου portfolio. Μου αρέσει να δημιουργώ σύγχρονες ψηφιακές εμπειρίες και να μοιράζομαι τις δουλειές, τα projects και τα ενδιαφέροντά μου. Νιώστε ελεύθεροι να εξερευνήσετε τι έχω κάνει πρόσφατα. Μπορείτε επίσης να επικοινωνήσετε μαζί μου μέσω των παρακάτω συνδέσμων.",
+        navigation_label: "Κύριο μενού πλοήγησης",
+        navigation: {
+            experience: "Εμπειρία",
+            projects: "Έργα",
+            education: "Εκπαίδευση",
+            contact: "Επικοινωνία",
+            interests: "Ενδιαφέροντα"
+        },
         language_label: "Επιλογή γλώσσας:",
         orientation_label: "Προσανατολισμός διάταξης:",
         orientation_options: {
@@ -105,7 +121,7 @@ window.translations = {
         interests_title: "Ενδιαφέροντα",
         education_title: "Εκπαίδευση",
         education_people: [
-            { title: "Πτυχίο Επιστήμης Υπολογιστών", summary: "Πανεπιστήμιο Κρήτης", tags: ["Πτυχίο Bachelor of Science", "Επιστήμη Υπολογιστών"] }
+            { title: "Πτυχίο Επιστήμης Υπολογιστών", summary: "Πανεπιστήμιο Κρήτης", tags: ["Πτυχίο Bachelor of Science", "Επιστήμη Υπολογιστών", "Πανεπιστήμιο Κρήτης", "CSD", "UoC"] }
         ],
         project_badge: "Αποθετήριο GitHub",
         open_label: "Άνοιγμα",
@@ -125,7 +141,7 @@ window.translations = {
             { title: "Ηλεκτρονικό ταχυδρομείο", summary: "kostaskonstantakis6@gmail.com", tags: ["Ταχυδρομείο", "Επικοινωνία"] },
             { title: "LinkedIn", summary: "Kostas Konstantakis", tags: ["Προφίλ", "Δικτύωση"] },
             { title: "GitHub", summary: "kostaskonstantakis", tags: ["Κώδικας", "Έργα"] },
-            { title: "Τηλεφώνησέ μου", summary: "kostaskonstantakis", tags: ["Κλήση", "Τηλέφωνο"] }
+            { title: "Τηλεφώνησέ μου", summary: "+30 698 333 4780", tags: ["Κλήση", "Τηλέφωνο"] }
         ],
         interests_people: [
             { title: "Μουσική", summary: "Ακρόαση, ανακάλυψη και απόλαυση διαφορετικών ειδών και ήχων.", tags: ["Ακρόαση", "Εκτέλεση", "Ανακάλυψη", "Πολιτισμός"] },
@@ -139,7 +155,15 @@ window.translations = {
         header_text: "Добро пожаловать в портфолио Костаса!",
         footer_text: "Костас Константакис &#169; <span id=\"year\"></span>",
         signature_name: "Костас Константакис",
-        synopsis: "Привет всем! Меня зовут Костас.<br>Я программист.<br>Добро пожаловать в моё личное портфолио.<br>Мне нравится создавать современные цифровые решения и делиться своими проектами, идеями и интересами.<br>Не стесняйтесь исследовать, чем я занимался недавно.<br>Также вы можете связаться со мной через ссылки ниже.",
+        synopsis: "Привет всем! Меня зовут Костас. Я программист и гитарист. Добро пожаловать в моё личное портфолио. Мне нравится создавать современные цифровые решения и делиться своими проектами, идеями и интересами. Не стесняйтесь исследовать, чем я занимался недавно. Также вы можете связаться со мной через ссылки ниже.",
+        navigation_label: "Главное меню навигации",
+        navigation: {
+            experience: "Опыт",
+            projects: "Проекты",
+            education: "Образование",
+            contact: "Контакты",
+            interests: "Интересы"
+        },
         language_label: "Выберите язык:",
         orientation_label: "Ориентация макета:",
         orientation_options: {
@@ -172,7 +196,7 @@ window.translations = {
         interests_title: "Интересы",
         education_title: "Образование",
         education_people: [
-            { title: "Бакалавр компьютерных наук", summary: "Критский университет", tags: ["Степень бакалавра", "Компьютерные науки"] }
+            { title: "Бакалавр компьютерных наук", summary: "Критский университет", tags: ["Степень бакалавра", "Компьютерные науки", "Критский университет", "CSD", "Университет Крита"] }
         ],
         project_badge: "Репозиторий GitHub",
         open_label: "Открыть",
@@ -192,7 +216,7 @@ window.translations = {
             { title: "Электронная почта", summary: "kostaskonstantakis6@gmail.com", tags: ["Почта", "Связь"] },
             { title: "LinkedIn", summary: "Kostas Konstantakis", tags: ["Профиль", "Нетворкинг"] },
             { title: "GitHub", summary: "kostaskonstantakis", tags: ["Код", "Проекты"] },
-            { title: "Позвонить мне", summary: "kostaskonstantakis", tags: ["Звонок", "Телефон"] }
+            { title: "Позвонить мне", summary: "+30 698 333 4780", tags: ["Звонок", "Телефон"] }
         ],
         interests_people: [
             { title: "Музыка", summary: "Слушаю, открываю для себя и наслаждаюсь разными стилями и звучанием.", tags: ["Прослушивание", "Игра", "Открытия", "Культура"] },
